@@ -10,13 +10,12 @@ require '../views/SacarTurnoConMedico.php';
 
 
 
-if(!isset($_GET['id'])) {} 
-else{
+if(!isset($_GET['id'])) {
 	header('Location:./IngresoAlSistema.php');
 	exit();
 }
 
-if(!ctype_digit($_GET['id']){
+if(!ctype_digit($_GET['id'])){
 	header('Location:./IngresoAlSistema.php');
 	exit();
 }
