@@ -9,7 +9,14 @@ class Turno extends Model {
 		$this->db->query("SELECT turno_id, dni_paciente, dni_medico, fecha, hora, consultorio, usuarios.nombre, usuarios.apellido from turnos left join usuarios on usuarios.dni=turnos.dni_medico where dni_paciente = " . $dni);
 		return $this->db->fetchAll();
 	}
-	
+
+
+	public function getTodosPorMedico($dni){
+		if (!ctype_digit($dni)) die("error");
+		$this->db->query("SELECT turno_id, dni_paciente, dni_medico, fecha, hora, consultorio, usuarios.nombre, usuarios.apellido from turnos left join usuarios on usuarios.dni=turnos.dni_medico where dni_medico = " . $dni);
+		return $this->db->fetchAll();
+
+	}
 	public function coincideIdYPaciente($turno_id,$dni){
 		if (!ctype_digit($dni)) die("error");
 		if (!ctype_digit($turno_id)) die("error");
