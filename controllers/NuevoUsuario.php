@@ -14,7 +14,7 @@ if(isset($_POST['dni'])){
 	$apellido=$_POST['apellido'];
 	$contra=$_POST['contra'];
 	$mail=$_POST['mail'];
-	
+	$tipo=1;
 	if (!ctype_digit($dni)){
 		$mensaje="DNI invalido";
 	}
@@ -23,7 +23,7 @@ if(isset($_POST['dni'])){
 			$mensaje="Ya existe un usuario con ese número de DNI";
 		}
 		else{  //try
-			$u->DarDeAlta($dni, $nombre, $apellido, $contra, $mail);
+			$u->DarDeAlta($dni, $nombre, $apellido, $contra, $mail,$tipo);
 				header('Location:./IngresoAlSistema.php');
 				exit();
 		}

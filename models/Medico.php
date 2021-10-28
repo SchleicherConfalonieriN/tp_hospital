@@ -23,9 +23,9 @@ class Medico extends Usuario {
 		return $retorno;
 	}
 
-	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad){
+	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo){
 
-		$this->db->query("INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`, `contrasenia`, `tipo`, `mail`) VALUES ('$dni', '$nombre', '$apellido', '$contra', '1', '$especialidad')");
+		$this->db->query("INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`, `contrasenia`, `tipo`, `mail`) VALUES ('$dni', '$nombre', '$apellido', '$contra', '$tipo', '$especialidad')");
 
 		$this->db->query("INSERT INTO `medicos` (`dni`, `nom_medico`, `ape_medico`,`especialidad`) VALUES ('$dni', '$nombre', '$apellido', '$especialidad')");
 

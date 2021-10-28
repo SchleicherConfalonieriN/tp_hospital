@@ -50,11 +50,11 @@ class Usuario extends Model {
 		return $string;
 	}
 	
-	public function DarDeAlta($dni,$nombre,$apellido,$contra,$mail){
+	public function DarDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo){
 		if (!ctype_digit($dni)) die("error");
 		$nombre=$this->db->escape($nombre);
 		$apellido=$this->db->escape($apellido);
-		$this->db->query("INSERT INTO usuarios (dni, nombre, apellido, contrasenia, tipo, mail) VALUES ('$dni', '$nombre', '$apellido', '$contra', 1 , '$mail')");
+		$this->db->query("INSERT INTO usuarios (dni, nombre, apellido, contrasenia, tipo, mail) VALUES ('$dni', '$nombre', '$apellido', '$contra', $tipo , '$mail')");
 	}
 }
 
