@@ -15,7 +15,7 @@ if(isset($_POST['dni'])){
 		if ($u->tipoDeUsuario()==0){
 			$_SESSION['idUsuario']=$dni;
 			$_SESSION['tipoUsuario']=0;
-			header('Location:./menuPrincipalAdministracion.php');
+			header('Location:./menuPrincipalAdmin.php');
 		}
 		if ($u->tipoDeUsuario()==1){
 			$_SESSION['idUsuario']=$dni;

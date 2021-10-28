@@ -9,8 +9,7 @@ require '../models/Turno.php';
 require '../views/SacarTurnoConMedico.php';
 
 
-
-if(!isset($_GET['id'])) {
+if(!isset($_GET['id'])){
 	header('Location:./IngresoAlSistema.php');
 	exit();
 }
@@ -21,32 +20,72 @@ if(!ctype_digit($_GET['id'])){
 }
 
 $dni_medico=$_GET['id'];
+$dni_usuario=$_SESSION['idUsuario'];
 
 $m=new Medico();
 $t=new Turno();
-$TurnosDisponibles=[];
+$turnosDisponibles=[];
+$fecha=date("Y-m-d");;
+$mensaje="";
 
-if(isset($_GET['dia'])){
+
+if(isset($_POST['fecha'])){
 	//vlidar fecha
-	$fecha=$_GET('dia');
+	$fecha=$_POST['fecha'];
+	$fecha=date("Y-m-d", strtotime($fecha));
 	
-	$turnosPosibles=$m->generarHorariosDeAtencion();
-	
-	$turnosAgendados=$t->getTurnosAgendados($dni_medico,$fecha);
-	
-	foreach($turnosPosibles as $tp){
-		$libre=true;
-		foreach($turnosAgendados as $ta){
-			if($tp==$ta['hora']) $libre=false;
+	$fechavalida=true;
+	$hoy=date("Y-m-d");
+	if($fecha<=$hoy) {
+		$fechavalida=false;
+		$mensaje="No se puede sacar turno para una fecha anterior al dia de hoy";
+	} //no se puede sacar turno para un dia que ya pasó
+	$enDosSemanas=date("Y-m-d", strtotime($hoy.'+ 15 days')); 
+	if($fecha>$enDosSemanas) {
+		$fechavalida=false;
+		$mensaje="Se puede sacar turno para dentro de 15 dias como máximo";
 		}
-		if ($libre=true) array_push($turnosDisponibles,$tp);
+	$diaDeLaSemana=date('N',strtotime($fecha));
+	if($diaDeLaSemana>5) {
+		$fechavalida=false;
+		$mensaje="No se puede sacar turno para dias sabados ni domingos";
+	} 
+	
+	if ($fechavalida==true){
+	
+		$turnosPosibles=$m->generarHorariosDeAtencion($dni_medico);
+		
+		$turnosAgendados=$t->getTurnosAgendados($dni_medico,$fecha);
+		
+
+		foreach($turnosPosibles as $tp){
+			$libre=true;
+			foreach($turnosAgendados as $ta){
+				$aux=date("H:i",strtotime ($ta['hora']));
+				if($tp==$aux) $libre=false;
+			}
+			if ($libre==true) array_push($turnosDisponibles,$tp);
+		}
+		if(count($turnosDisponibles)==0) $mensaje="No hay turnos disponibles para la fecha seleccionada";
+		
+		if(isset($_POST['hora'])){
+			//validar hora
+			$hora=$_POST['hora'];
+			$t->agendarTurno($dni_medico,$dni_usuario,$fecha,$hora);
+			header('Location:./menuPrincipalPaciente.php');
+			exit();
 	}
+}
+
 	
 }
 
-$v=new SacarTurnoConMedico();
-$v->opciones=$TurnosDisponibles=[];
-$v->render();
+	$v=new SacarTurnoConMedico();
+	$v->opciones=$turnosDisponibles;
+	$v->dia=$fecha;
+	$v->mensaje=$mensaje;
+	$v->render();
+
 
 
 

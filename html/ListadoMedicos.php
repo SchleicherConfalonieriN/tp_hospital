@@ -22,6 +22,7 @@
 		<?php } ?>
 
 	</table>
+	<a href="./menuPrincipalPaciente.php"><button>Volver</button></a>
 </body>
 </html>
 
