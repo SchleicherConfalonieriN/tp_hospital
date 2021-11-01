@@ -1,6 +1,6 @@
 <?php 
 require '../fw/fw.php';
-require './Sesion.php';
+
 require '../models/Medico.php';
 require '../views/MenuPrincipalAdmin.php';
 

@@ -18,25 +18,25 @@ $s=new seguridad();
 $dv=$s->dni_validacion($dni);
 $nv=$s->nombre_validacion($nombre);
 $av=$s->apellido_validacion($apellido);
-$cv=$s->contra_validacion($contra);
+$hashcontra=$s->hash_contra($contra);
 $mv=$s->email_validacion($mail);
 $ev=$s->especialidad_validacion($especialidad);
 $tv=$s->tipo_validacion($tipo);
 
 
-if($dv&&$nv&&$av&&$mv&&$cv&&$ev&&$tv){// condicional de que se valido
+if($dv&&$nv&&$av&&$mv&&$ev&&$tv){// condicional de que se valido
 
 		if ($tipo==2){
 
 			$m = new medico();
-			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo);
+			$m->registroMedico ($dni, $nombre, $apellido, $hashcontra, $mail, $especialidad,$tipo);
 			
 			header('Location:./menuPrincipalAdmin.php'); 
 			}
 
 		else{
 			$m=new usuario();
-			$m->DarDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo);
+			$m->DarDeAlta($dni,$nombre,$apellido,$hashcontra,$mail,$tipo);
 			}
 			header('Location:./menuPrincipalAdmin.php'); 
 

@@ -9,48 +9,16 @@
 
 <?php 
 require './seguridad.php';
-
-$tipo=0;
-
-$nombre='     s#          ';
-
-$apellido='schleicher';
-
-$email='';
+$contra=86249731;
+$hashcontra;
 
 $s=new seguridad();
 
-if($s->nombre_validacion($nombre)){
+$hashcontra=$s->hash_contra($contra);
 
-echo "nombre validado";
+echo $hashcontra;
 
-}else{echo "no nombre validado";}
-
-echo "-------------";
-
-
-if($s->apellido_validacion($apellido)){
-
-echo "apellido validad";
-}else{echo "no apellido validad";}
-
-echo "-------------";
-
-
-if($s->email_validacion($email)){
-
-	echo "email funciona";
-}else{echo "no funciona email";}
-
-
-echo "-------------";
-
-if($s->tipo_validacion($tipo)){
-
-	echo "tipo funciona";
-}else{echo "no funciona tipo";}
-
-
+echo "a ver";
 
  ?>
 </body>

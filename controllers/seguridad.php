@@ -2,6 +2,7 @@
 
 class seguridad{
 
+	
 
 	public function dni_validacion($dni){
 
@@ -88,9 +89,7 @@ public function email_validacion($mail){
 	$verificacion=0;
 
 
-		if (!ctype_digit($contra)){
-			$verificacion= $verificacion+1;
-		}
+	
 
 		if ($contra<0){
 			$verificacion= $verificacion+1;
@@ -112,6 +111,25 @@ public function email_validacion($mail){
 		return true;}
 		else{return false;}
 	}
+
+
+	public function hash_contra($contra){
+
+		$hashcontra=password_hash($contra, PASSWORD_DEFAULT);
+		return $hashcontra;
+	}
+
+	public function verify_contra($contra,$datos){
+
+		if (password_verify($contra, $datos['contrasenia'])){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+
 }//FINAL DE CLASE
 
 

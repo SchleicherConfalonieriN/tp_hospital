@@ -9,16 +9,13 @@ class Usuario extends Model {
 	private $apellido;
 	
 	
-	public function intentarLoguear($dni,$contrasenia){
-		if (!ctype_digit($dni)) return false;
+	public function datos($dni){
+		
 		$this->db->query("SELECT * from usuarios where dni =" . $dni);
 		if (($this->db->numRows()!=1)) return false;
-		$c = $this->db->fetch(); //Hay que hacer lo dde sha5 y validar la contraseña
-		if(($c['contrasenia']=$contrasenia)) {
-			$this->tipo=$c['tipo'];
-			return true;
-		};
-		return false;
+		$c = $this->db->fetch();
+			
+		return $c;
 	}
 	
 	public function cargarDatos($dni){
@@ -34,9 +31,9 @@ class Usuario extends Model {
 		$this->apellido=$c['apellido'];
 	}
 	
-	public function tipoDeUsuario(){
+	/*public function tipoDeUsuario(){ REVISAR SI HACE FALTA ESTA FUNCION
 		return $this->tipo;
-	}
+	}*/ 
 	
 	public function UsuarioExistente($dni){
 		if (!ctype_digit($dni)) die("error");
@@ -56,5 +53,14 @@ class Usuario extends Model {
 		$apellido=$this->db->escape($apellido);
 		$this->db->query("INSERT INTO usuarios (dni, nombre, apellido, contrasenia, tipo, mail) VALUES ('$dni', '$nombre', '$apellido', '$contra', $tipo , '$mail')");
 	}
+
+	public function verificacion_usuario($dni){
+
+		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
+		$c = $this->db->fetch();
+		
+
+	}
+
 }
 
