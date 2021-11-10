@@ -1,7 +1,6 @@
 <?php
 //controlador
-require './Sesion.php';
-require './seguridad.php';
+require '../class_helper/seguridad.php';
 require '../fw/fw.php';
 require '../models/Usuario.php';
 require '../views/NuevoUsuario.php';
@@ -20,29 +19,21 @@ if(count($_POST)>0){
 	$tipo=1;
 
 
-	$s=new seguridad();
-	$dv=$s->dni_validacion($dni);
-	$nv=$s->nombre_validacion($nombre);
-	$av=$s->apellido_validacion($apellido);
-	$hashcontra=$s->hash_contra($contra);
-	$mv=$s->email_validacion($mail);
-	$ev=$s->especialidad_validacion($especialidad);
-	$tv=$s->tipo_validacion($tipo);
-
-
-if($dv&&$nv&&$av&&$mv&&$ev&&$tv){// condicional de que se valido
 	
-		if ($u->UsuarioExistente($dni)){
+$s=new seguridad();
+
+
+	
+		if ($u->UsuarioExistente($dni,$s)){
 			$mensaje="Ya existe un usuario con ese número de DNI";
 		}
 		else{  //try
-			$u->DarDeAlta($dni, $nombre, $apellido, $hashcontra, $mail,$tipo);
+			$u->DarDeAlta($dni, $nombre, $apellido, $contra, $mail,$tipo,$s);
 				header('Location:./IngresoAlSistema.php');
 				exit();
 		}
 	}
 
-}
 $v= new NuevoUsuario();
 $v->mensaje= $mensaje;
 $v->render();

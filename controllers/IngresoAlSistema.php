@@ -1,7 +1,7 @@
 <?php
 
 //controlador
-require './seguridad.php';
+require '../class_helper/seguridad.php';
 require '../fw/fw.php';
 require '../models/Usuario.php';
 require '../views/IngresoAlSistema.php';
@@ -15,7 +15,7 @@ $contra=$_POST["contra"];
 $u = new usuario();
 $s=new seguridad();
 
-$datos=$u->datos($dni);
+$datos=$u->datos($dni,$s);
 
 
 	if ($s->verify_contra($contra,$datos))

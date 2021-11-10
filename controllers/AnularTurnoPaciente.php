@@ -2,7 +2,6 @@
 
 require '../fw/fw.php';
 require '../models/Turno.php';
-require '../models/Usuario.php';
 require '../models/Medico.php';
 require '../views/AnularTurnoPaciente.php';
 require './Sesion.php';

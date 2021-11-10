@@ -5,6 +5,14 @@
 	<title></title>
 </head>
 <body>
-funcionaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+<?php 
+require '../fw/fw.php';
+require '../models/Turno.php';
+require '../models/Medico.php';
+require '../models/Estudios.php';
+require '../views/MenuPrincipalAdmin.php';
+
+
+
 </body>
 </html>

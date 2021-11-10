@@ -3,10 +3,11 @@
 
 require '../fw/fw.php';
 require './Sesion.php';
-require '../models/Usuario.php';
+require '../models/Medico.php';
+require '../models/estudios.php';
 require '../models/Turno.php';
 require '../views/MenuPrincipal.php';
-
+require '../class_helper/seguridad.php';
 
 if ($_SESSION['tipoUsuario']!=1)
 {
@@ -15,15 +16,22 @@ if ($_SESSION['tipoUsuario']!=1)
 }
 
 $dni=$_SESSION['idUsuario'];
+
+$e = new estudios();
 $u = new usuario();
-$u->cargarDatos($dni);
+$s =new seguridad();
+$m = new  medico();
+$datos=$u->datos($dni,$s);
 
 $t = new Turno();
 $todosLosTurnos=$t->GetTodosPorUsuario($dni);
 
 
 
+
 $v= new MenuPrincipal();
-$v->usuario=$u;
+
+$v->info_medico = $m->informacion($dni);
+$v->usuario=$datos;
 $v->turnos=$todosLosTurnos;
 $v->render();

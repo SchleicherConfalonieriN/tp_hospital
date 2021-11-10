@@ -6,15 +6,7 @@ require '../models/Turno.php';
 require './Sesion.php';
 
 
-if(!isset($_GET['id'])) {
-	header('Location:./menuPrincipalPaciente.php');
-	exit();
-}
 
-if(!ctype_digit($_GET['id'])) {
-	header('Location:./menuPrincipalPaciente.php');
-	exit();
-}
 
 $id_turno=($_GET['id']);
 

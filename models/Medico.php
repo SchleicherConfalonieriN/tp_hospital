@@ -7,6 +7,12 @@ class Medico extends Usuario {
 	
 	private $especialidad;
 
+	public function informacion($dni){
+
+		$this->db->query("SELECT * from medicos where dni='$dni'");
+		return $this->db->fetchAll();
+	}
+
 	
 	public function getTodos(){
 		$this->db->query("SELECT * FROM medicos");
@@ -23,22 +29,43 @@ class Medico extends Usuario {
 		return $retorno;
 	}
 
-	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo){
+	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$s){
+		$s->dni_validacion($dni);
+		$s->nombre_validacion($nombre);
+		$s->apellido_validacion($apellido);
+		$hashcontra=$s->hash_contra($contra);
+		$s->email_validacion($mail);
+		$s->especialidad_validacion($especialidad);
+		$s->tipo_validacion($tipo);
 
-		$this->db->query("INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`, `contrasenia`, `tipo`, `mail`) VALUES ('$dni', '$nombre', '$apellido', '$contra', '$tipo', '$especialidad')");
+		$this->db->query("INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`, `contrasenia`, `tipo`, `mail`) VALUES ('$dni', '$nombre', '$apellido', '$hashcontra', '$tipo', '$mail')");
 
 		$this->db->query("INSERT INTO `medicos` (`dni`, `nom_medico`, `ape_medico`,`especialidad`) VALUES ('$dni', '$nombre', '$apellido', '$especialidad')");
-
-
 	}
 
-	public function eliminarMedico($dni){
-
+	public function eliminarMedico($dni,$s){
+		
 		$this->db->query("delete from usuarios where dni='$dni'");
 		$this->db->query("delete from medicos where dni='$dni'");
 
 	}
 
-}
+
+
+	public function cambiar_consultorio ($dni,$consultorio,$s){
+
+	$this->db->query("UPDATE `medicos` SET consultorio = '$consultorio' where dni='$dni'");
+	}
+
+
+	public function cambiar_horario ($dni,$turno,$s){
+
+	$this->db->query("UPDATE `medicos` SET horario = '$turno' 
+	where dni='$dni'");
+	}
+
+
+
+}// fin de la clase
 
 

@@ -16,8 +16,21 @@
 		<?php foreach($this->turnos as $t) { ?>
 		<tr><td><?= date("d-m-Y", strtotime($t['fecha']))?></td> <td><?= date("H:i", strtotime($t['hora']))?></td><td><?= $t['nombre'] ?> <?= $t['apellido'] ?></td><td><?= $t['consultorio'] ?></td><td><a href="./AnularTurnoPaciente.php?id=<?= $t['turno_id'] ?>">Anular Turno</a></td></tr>
 		<?php } ?>
-
 	</table>
+
+
+
+<div>
+<form name= "cambiar_contra"method="post" action="../controllers/cambiarcontraseña.php">
+  <label for="contraseña">Contraseña:</label><br>
+   <input type="number" id="dni" name="contraseña" required="required"><br>
+<input type="submit" value="Cambiar Contraseña"></input>
+	</form>
+</div>
+
+
+
+
 <a href="./CerrarSesion.php"><button>Cerrar Sesión</button></a>
 <a href="./ListadoMedicos.php"><button>Pedir Turno</button></a>
 </body>
