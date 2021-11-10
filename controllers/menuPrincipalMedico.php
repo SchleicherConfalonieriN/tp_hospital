@@ -10,11 +10,11 @@ $dni=$_SESSION['idUsuario'];
 
 
 $m= new medico();
-$datos = $m->informacion($dni);
+$datos = $m->informacion($dni,$s);
 
 
 $t = new Turno();
-$turnos_reservados=$t->GetTodosPorMedico($dni);
+$turnos_reservados=$t->GetTodosPorMedico($dni,$s);
 
 
 

@@ -9,6 +9,9 @@ class Medico extends Usuario {
 
 	public function informacion($dni){
 
+
+	$s->dni_validacion($identificador);
+
 		$this->db->query("SELECT * from medicos where dni='$dni'");
 		return $this->db->fetchAll();
 	}
@@ -45,6 +48,9 @@ class Medico extends Usuario {
 
 	public function eliminarMedico($dni,$s){
 		
+
+		$s->dni_validacion($identificador);
+
 		$this->db->query("delete from usuarios where dni='$dni'");
 		$this->db->query("delete from medicos where dni='$dni'");
 
@@ -54,12 +60,18 @@ class Medico extends Usuario {
 
 	public function cambiar_consultorio ($dni,$consultorio,$s){
 
+		$s->dni_validacion($identificador);
+	//	$s->dni_consultorio($identificador);
+
 	$this->db->query("UPDATE `medicos` SET consultorio = '$consultorio' where dni='$dni'");
 	}
 
 
 	public function cambiar_horario ($dni,$turno,$s){
 
+		$s->dni_validacion($identificador);
+		//$s->dni_turno($identificador);
+		
 	$this->db->query("UPDATE `medicos` SET horario = '$turno' 
 	where dni='$dni'");
 	}

@@ -16,7 +16,7 @@ $u = new usuario();
 $s=new seguridad();
 
 $datos=$u->datos($dni,$s);
-
+$s->contra_validacion($contra,$s);
 
 	if ($s->verify_contra($contra,$datos))
 	{

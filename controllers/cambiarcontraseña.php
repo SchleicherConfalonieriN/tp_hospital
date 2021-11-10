@@ -17,6 +17,7 @@ $dni = $_SESSION['idUsuario'];
 $u = new usuario();
 $s = new seguridad();
 
+
 $u->cambiar_contraseña($dni,$contra,$s);
 
 

@@ -45,52 +45,23 @@ public function email_validacion($mail){
 	}
 
 	public function tipo_validacion($tipo){
-
-	$verificacion;
-	$verificacion=0;
-
-		if(!is_numeric($tipo)){
-			$verificacion=$verificacion+1;
-		}
-
-		if(($tipo > 2) || ($tipo < 0)){
-			$verificacion=$verificacion+1;
-		}
+	
 
 
-		if($verificacion>0){
-		return false;}
-		else{return true;}
+	if ($tipo!=0 && $horario!=1 && $horario!=2){throw new ValidationException("Formato de horario invalido");}
 	}
 
 
 		public function contra_validacion($contra){
 
-	$verificacion;
-	$verificacion=0;
 
-
-	
-
-		if ($contra<0){
-			$verificacion= $verificacion+1;
-		}
-		
-		if($verificacion>0){
-		return false;}
-		else{return true;}
+	if (!ctype_digit($dni)) throw new ValidationException("Contraseña invalida");
 	}
 
 
 	public function especialidad_validacion($especialidad){
 
-	$verificacion;
-	$verificacion=0;
-
-
-		if(preg_match('/^[a-zA-z]*$/', $especialidad)==1){
-		return true;}
-		else{return false;}
+		if(!preg_match('/^[a-zA-z]*$/', $especialidad)==1){throw new ValidationException("Formato de Especialidad Invalido");}
 	}
 
 
@@ -108,6 +79,39 @@ public function email_validacion($mail){
 			return false;
 		}
 	}
+
+
+		public function consultorio_validacion($consultorio){
+
+
+	if (!ctype_digit($consultorio)) throw new ValidationException("Numero de Consultorio Invalido");
+	}
+
+
+
+		public function horario_validacion($horario){
+
+
+	if ($horario!=M && $horario!=T){throw new ValidationException("Formato de horario invalido");}
+	
+}
+
+
+	public function precio_validacion($precio){
+
+
+	if (!ctype_digit($precio)) throw new ValidationException("Formato de precio invalido");
+	
+}
+
+	public function descripcion_validacion($descripcion){
+
+
+	if(!preg_match('/^[a-zA-z]*$/', $descripcion)==1){throw new ValidationException("Formato de Especialidad Invalido");}
+	
+
+	
+}
 
 
 

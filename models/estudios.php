@@ -20,16 +20,18 @@ public function UsuarioExistente($dni,$s){
 	}
 	
 	
-	public function DarDeAlta($nombre,$descripcion,$precio){
+	public function DarDeAlta($indentificador,$nombre,$descripcion,$precio,$s){
 
-		$this->db->query("INSERT INTO estudios (Nombre, Descripcion, Precio) VALUES ('$nombre', '$descripcion', '$precio')");
+		$s->nombre_validacion($nombre);
+		$s->dni_validacion($identificador);
+		$this->db->query("INSERT INTO estudios (Identificador,Nombre, Descripcion, Precio) VALUES ('$Identificador,$nombre', '$descripcion', '$precio')");
 	}
 
 
 
-	public function Eliminar($nombre){
-
-		$this->db->query("delete from estudios where nombre='$nombre'");
+	public function Eliminar($Identificador,$s){
+		$s->dni_validacion($identificador);
+		$this->db->query("delete from estudios where Identificador='$Identificador'");
 	}
 
 

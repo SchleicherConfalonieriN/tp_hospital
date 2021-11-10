@@ -12,7 +12,7 @@ $nombre     =($_POST['nombre']);
 $descripcion=($_POST['descripcion']);
 $precio		=($_POST['precio']);
 
-$e->DarDeAlta($nombre,$descripcion,$precio);
+$e->DarDeAlta($nombre,$descripcion,$precio,$s);
 
 header('Location:./menuPrincipalAdmin.php'); 
  ?>

@@ -23,6 +23,8 @@ class Usuario extends Model {
 		return $c;
 	}
 	
+
+	// REVISAR SI ESTA FUNCION HACE FALTA
 	public function cargarDatos($dni){
 
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
@@ -79,6 +81,8 @@ class Usuario extends Model {
 
 	public function cambiar_contraseña($dni,$contra,$s){
 
+		$s->dni_validacion($dni);
+		$s->contra_validacion($contra);
 		$hashcontra=$s->hash_contra($contra);
 	
 		$this->db->query("UPDATE usuarios SET contrasenia  = '$hashcontra' where dni = $dni");
