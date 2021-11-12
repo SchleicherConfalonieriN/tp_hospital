@@ -15,12 +15,12 @@ if ($_SESSION['tipoUsuario']!=1)
 	exit();
 }
 
-$s=new seguridad();
+
 $dni=$_SESSION['idUsuario'];
 
 $e = new estudios();
 $u = new usuario();
-$s =new seguridad();
+$s = new seguridad();
 $m = new  medico();
 $datos=$u->datos($dni,$s);
 
@@ -35,4 +35,5 @@ $v= new MenuPrincipal();
 $v->info_medico = $m->informacion($dni,$s);
 $v->usuario=$datos;
 $v->turnos=$todosLosTurnos;
+$v->estudios=$e->getTodos();
 $v->render();

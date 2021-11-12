@@ -9,7 +9,7 @@ public function dni_validacion($dni){
 		if (!ctype_digit($dni)) throw new ValidationException("Dni invalido");
 		
 
-		if ($dni<0 or $dni>100000000)throw new ValidationException("Valor de dni invalido");
+		if ($dni<1000 or $dni>100000000)throw new ValidationException("Valor de dni invalido");
 
 	}
 
@@ -48,14 +48,14 @@ public function email_validacion($mail){
 	
 
 
-	if ($tipo!=0 && $horario!=1 && $horario!=2){throw new ValidationException("Formato de horario invalido");}
+	if ($tipo!=0 && $tipo!=1 && $tipo!=2){throw new ValidationException("Formato de horario invalido");}
 	}
 
 
 		public function contra_validacion($contra){
 
 
-	if (!ctype_digit($dni)) throw new ValidationException("Contraseña invalida");
+	if (!ctype_digit($contra)) throw new ValidationException("Contraseña invalida");
 	}
 
 

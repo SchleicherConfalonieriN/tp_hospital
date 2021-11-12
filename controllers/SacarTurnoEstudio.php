@@ -4,10 +4,9 @@
 
 require '../fw/fw.php';
 require './Sesion.php';
-require '../models/Medico.php';
+require '../models/estudios.php';
 require '../models/Turno.php';
-require '../views/SacarTurnoConMedico.php';
-require '../class_helper/seguridad.php';
+require '../views/SacarTurnoEstudio.php';
 
 
 if(!isset($_GET['id'])){
@@ -22,15 +21,15 @@ if(!ctype_digit($_GET['id'])){
 
 
 
-$dni_medico=$_GET['id'];
+$id_estudio=$_GET['id'];
 $dni_usuario=$_SESSION['idUsuario'];
 
-$m=new Medico();
+$e=new estudios();
 $t=new Turno();
 $turnosDisponibles=[];
 $fecha=date("Y-m-d");;
 $mensaje="";
-$s=new seguridad();
+
 
 if(isset($_POST['fecha'])){
 	//vlidar fecha
@@ -56,9 +55,9 @@ if(isset($_POST['fecha'])){
 	
 	if ($fechavalida==true){
 	
-		$turnosPosibles=$m->generarHorariosDeAtencion($dni_medico,$s);
+		$turnosPosibles=$e->generarHorariosDeEstudios($id_estudio);
 		
-		$turnosAgendados=$t->getTurnosAgendados($dni_medico,$fecha);
+		$turnosAgendados=$t->getTurnosAgendados($id_estudio,$fecha);
 		
 
 		foreach($turnosPosibles as $tp){
@@ -74,8 +73,8 @@ if(isset($_POST['fecha'])){
 		if(isset($_POST['hora'])){
 			//validar hora
 			$hora=$_POST['hora'];
-			$t->agendarTurno($dni_medico,$dni_usuario,$fecha,$hora);
-			header('Location:./menuPrincipalPaciente.php');
+			$t->agendarTurno($id_estudio,$dni_usuario,$fecha,$hora);
+			header('Location:./MenuPrincipalPaciente.php');
 			exit();
 	}
 }
@@ -83,7 +82,7 @@ if(isset($_POST['fecha'])){
 	
 }
 
-	$v=new SacarTurnoConMedico();
+	$v=new SacarTurnoEstudio();
 	$v->opciones=$turnosDisponibles;
 	$v->dia=$fecha;
 	$v->mensaje=$mensaje;

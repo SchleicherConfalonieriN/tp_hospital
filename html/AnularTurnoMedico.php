@@ -1,3 +1,7 @@
+<?php
+
+//html
+?>
 
 
 <!DOCTYPE html>
@@ -7,12 +11,12 @@
 </head>
 <body>
 
-	<h1>¿Está seguro de que desea anular el turno?</h1>
-	<li>Profesional: <?= $this->medico ?></li>
+	<h1>¿Está seguro de uqe desea anular el turno?</h1>
+	<li>Paciente: <?= $this->paciente ?></li>
 	<li>Dia: <?= $this->turno['fecha'] ?></li>
 	<li>Hora: <?= $this->turno['hora'] ?></li>
     <a href="./AnularTurno.php?id=<?= $this->turno['turno_id'] ?>"><button>Anular</button></a>
-	<a href="./menuPrincipalPaciente.php"><button>Cancelar</button></a>
+	<a href="./MenuPrincipalMedico.php"><button>Cancelar</button></a>
 </body>
 </html>
 

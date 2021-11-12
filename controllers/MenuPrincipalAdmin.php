@@ -4,6 +4,7 @@ require '../models/Turno.php';
 require '../models/Medico.php';
 require '../models/Estudios.php';
 require '../views/MenuPrincipalAdmin.php';
+require '../class_helper/seguridad.php';
 
 
 $e=new estudios();

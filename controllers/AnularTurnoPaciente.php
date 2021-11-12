@@ -1,56 +1,78 @@
 <?php
 
 require '../fw/fw.php';
-require '../models/Turno.php';
+require '../models/Turno.php';;
 require '../models/Medico.php';
 require '../views/AnularTurnoPaciente.php';
+require '../views/AnularTurnoMedico.php';
+require '../views/AnularTurnoAdministracion.php';
 require './Sesion.php';
+require '../class_helper/seguridad.php';
 
-
-if ($_SESSION['tipoUsuario']!=1)
-{
-	header('Location:./menuPrincipalPaciente.php');
-	exit();
-}
-
+$s=new seguridad();
 if(!isset($_GET['id'])) {
-	header('Location:./menuPrincipalPaciente.php');
+	header('Location:./IngresoAlSistema.php');
 	exit();
 }
 
 if(!ctype_digit($_GET['id'])) {
-	header('Location:./menuPrincipalPaciente.php');
+	header('Location:./IngresoAlSistema.php');
 	exit();
 }
 
-$id_turno=($_GET['id']);
-$t=new Turno();
-$m=new Medico();
+if ($_SESSION['tipoUsuario']==1)
+{
+	$id_turno=($_GET['id']);
+	$t=new Turno();
+	$m=new Medico();
 
-$datosDeTurno=$t->getDatosTurno($id_turno);
-$nombreDelMedico=$m->nombreYApellido($datosDeTurno['dni_medico']);
+	$datosDeTurno=$t->getDatosTurno($id_turno);
+	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio'],$s);
 
+	$dni_paciente=$_SESSION['idUsuario'];
 
+	$v= new AnularTurnoPaciente();
+	$v->medico=$nombreDelMedico;
+	$v->turno=$datosDeTurno;
+	$v->render();
+	exit();
+}
+if ($_SESSION['tipoUsuario']==2)
+{
+	$id_turno=($_GET['id']);
+	$t=new Turno();
+	$u=new Usuario();
 
+	$datosDeTurno=$t->getDatosTurno($id_turno);
+	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente']);
 
+	$dni_paciente=$_SESSION['idUsuario'];
 
-$dni_paciente=$_SESSION['idUsuario'];
+	$v= new AnularTurnoMedico();
+	$v->paciente=$nombreDelPaciente;
+	$v->turno=$datosDeTurno;
+	$v->render();
+	exit();
+}
 
-$v= new AnularTurnoPaciente();
-$v->medico=$nombreDelMedico;
-$v->turno=$datosDeTurno;
-$v->render();
+if ($_SESSION['tipoUsuario']==0)
+{
+	$id_turno=($_GET['id']);
+	$t=new Turno();
+	$u=new Usuario();
+	$m=new Medico();
 
-//$t=new Turno();
+	$datosDeTurno=$t->getDatosTurno($id_turno);
+	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente']);
+	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio']);
 
-//verifico que el turno a anular corresponda al usuario logueado
-//if(!$t->coincideIdYPaciente($id_turno,$dni_paciente)){
-//	header('Location:./menuPrincipalPaciente.php');
-//	exit();
-//}
-
-
-//$t->anularTurno($id_turno);
-//header('Location:./menuPrincipalPaciente.php');
+	$v= new AnularTurnoAdministracion();
+	$v->paciente=$nombreDelPaciente;
+	$v->medico=$nombreDelMedico;
+	$v->turno=$datosDeTurno;
+	$v->render();
+	exit();
+}
+header('Location:./IngresoAlSistema.php');
 
 

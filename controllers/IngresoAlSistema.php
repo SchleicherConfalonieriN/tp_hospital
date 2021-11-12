@@ -16,7 +16,7 @@ $u = new usuario();
 $s=new seguridad();
 
 $datos=$u->datos($dni,$s);
-$s->contra_validacion($contra,$s);
+//$s->contra_validacion($contra,$s); No existe contra_validacion
 
 	if ($s->verify_contra($contra,$datos))
 	{
@@ -24,17 +24,17 @@ $s->contra_validacion($contra,$s);
 		if ($datos['tipo']==0){
 			$_SESSION['idUsuario']=$dni;
 			$_SESSION['tipoUsuario']=0;
-			header('Location:./menuPrincipalAdmin.php');
+			header('Location:./MenuPrincipalAdmin.php');
 		}
 		if ($datos['tipo']==1){
 			$_SESSION['idUsuario']=$dni;
 			$_SESSION['tipoUsuario']=1;
-			header('Location:./menuPrincipalPaciente.php');
+			header('Location:./MenuPrincipalPaciente.php');
 		}
 		if ($datos['tipo']==2){
 			$_SESSION['idUsuario']=$dni;
 			$_SESSION['tipoUsuario']=2;
-			header('Location:./menuPrincipalMedico.php');
+			header('Location:./MenuPrincipalMedico.php');
 		}	
 	}
 }

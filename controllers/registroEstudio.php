@@ -5,14 +5,15 @@ require '../models/estudios.php';
 require '../class_helper/seguridad.php';
 
 
-
+$s = new seguridad();
 $e = new estudios();
-$Identificador = ($_POST['identificador']);
-$nombre     =($_POST['nombre']);
-$descripcion=($_POST['descripcion']);
-$precio		=($_POST['precio']);
+$id = $_POST['identificador'];
+$nombre     =$_POST['nombre'];
+$descripcion=$_POST['descripcion'];
+$precio		=$_POST['precio'];
+$horario    =$_POST['horario'];
 
-$e->DarDeAlta($nombre,$descripcion,$precio,$s);
+$e->DarDeAlta($id,$nombre,$descripcion,$precio,$horario,$s);
 
 header('Location:./menuPrincipalAdmin.php'); 
  ?>

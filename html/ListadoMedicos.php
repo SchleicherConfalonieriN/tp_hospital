@@ -15,14 +15,15 @@
 
 
 	<table>
-		<tr><th>Nombre</th><th>Especialidad</th><th></th></tr>
+		<tr><th>Nombre</th><th>Especialidad</th><th>Horario</th><th></th></tr>
 
 		<?php foreach($this->medicos as $m) { ?>
-		<tr><td><?= $m['nom_medico'] ?> <?= $m['ape_medico'] ?></td> <td><?= $m['especialidad'] ?></td><td><a href="SacarTurnoConMedico.php?id=<?= $m['dni'] ?>">Sacar Turno</a></td></tr>
+		<tr><td><?= $m['nom_medico'] ?> <?= $m['ape_medico'] ?></td> <td><?= $m['nom_especialidad'] ?></td> <td><?php if($m['horario']=='t') echo("Tarde"); else echo('Mañana'); ?></td><td><a href="SacarTurnoConMedico.php?id=<?= $m['dni'] ?>">Sacar Turno</a></td></tr>
 		<?php } ?>
 
 	</table>
-	<a href="./menuPrincipalPaciente.php"><button>Volver</button></a>
+	<a href="./MenuPrincipalPaciente.php"><button>Volver</button></a>
+
 </body>
 </html>
 

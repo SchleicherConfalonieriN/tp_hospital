@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Menú Principal</title>
+	<title>Consulta de Turnos</title>
 </head>
 <body>
 <h1>Próximos turnos para: <?= $this->usuario['nombre']?> <?= $this->usuario['apellido']?></h1>
@@ -18,10 +18,6 @@
 		<?php } ?>
 	</table>
 
-
-<a href="./ListadoMedicos.php"><button>Pedir turno</button></a>
-<!---- <a href="./ListadoEspecialidades.php"><button>Pedir turno por especialidad(todavianoanda)</button></a>     Falta revisar
-
 <h1>Próximos estudios para: <?= $this->usuario['nombre']?> <?= $this->usuario['apellido']?></h1>
 <br/>
 	<table>
@@ -33,22 +29,8 @@
 	</table>
 
 
-
---->
-
-<a href="./ListadoEstudios.php"><button>Pedir turno para estudios</button></a>
-
-
-
-<div>
-<form name= "cambiar_contra"method="post" action="../controllers/cambiarcontraseña.php">
-  <label for="contraseña">Contraseña:</label><br>
-   <input type="number" id="dni" name="contraseña" required="required"><br>
-<input type="submit" value="Cambiar Contraseña"></input>
-	</form>
-</div>
 <a href="./CerrarSesion.php"><button>Cerrar Sesión</button></a>
 
-<?php if($this->usuario['tipo']==2) echo("<a href='./MenuPrincipalMedico.php'><button>Volver al Menú Profesional</button></a>");?>
+<a href='./MenuPrincipalAdministracion.php'><button>Volver al Menú Principal</button></a>
 </body>
 </html>

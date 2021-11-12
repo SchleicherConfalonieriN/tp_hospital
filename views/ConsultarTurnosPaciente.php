@@ -1,7 +1,7 @@
 <?php
 //vista
 
-class MenuPrincipal extends view {
+class ConsultarTurnosPaciente extends view {
 	public $info_medicos;
 	public $usuario;
 	public $turnos;
