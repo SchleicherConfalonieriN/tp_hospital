@@ -3,7 +3,8 @@ require '../fw/fw.php';
 require '../models/Usuario.php';
 require '../models/Turno.php';
 require './Sesion.php';
-
+require '../class_helper/seguridad.php';
+$s=new seguridad();
 
 
 
@@ -13,7 +14,7 @@ $id = $_POST['id'];
 
 $t=new Turno();
 
-$t->anularTurno($id);
+$t->anularTurno($id,$s);
 header('Location:./menuPrincipalAdmin.php');
  }
 
@@ -22,7 +23,7 @@ $id = $_POST['id'];
 
 $t=new Turno();
 
-$t->anularTurno($id);
+$t->anularTurno($id,$s);
 header('Location:./menuPrincipalPaciente.php');
  }
 
@@ -32,7 +33,7 @@ $id = $_POST['id'];
 
 $t=new Turno();
 
-$t->anularTurno($id);
+$t->anularTurno($id,$s);
 header('Location:./menuPrincipalMedico.php');
  }
  ?>

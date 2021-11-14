@@ -5,16 +5,30 @@
 	<title></title>
 </head>
 <body>
-<<?php 
+<form method="POST" action="">
+<input type="time" name="fecha">
+<input type="submit" name="enviar">
+</form>
+<?php
 
-$M = 3;
 
 
-if($M!=0 &&$M!=2 &&$M!=1){
-	echo "No Funciona";
+if(count($_POST)>0){
+$fecha= $_POST['fecha'];
+
+
+
+if(strtotime($fecha)){
+echo "funciona";
+}else{echo "no funciona";}
+
+
 }
 
- ?>
+
+
+
+  ?>
 
 </body>
 </html>

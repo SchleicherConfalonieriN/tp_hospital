@@ -28,10 +28,11 @@ if ($_SESSION['tipoUsuario']==1)
 
 	$datosDeTurno=$t->getDatosTurno($id_turno);
 	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio'],$s);
-
+	
 	$dni_paciente=$_SESSION['idUsuario'];
 
 	$v= new AnularTurnoPaciente();
+	
 	$v->medico=$nombreDelMedico;
 	$v->turno=$datosDeTurno;
 	$v->render();
@@ -43,8 +44,8 @@ if ($_SESSION['tipoUsuario']==2)
 	$t=new Turno();
 	$u=new Usuario();
 
-	$datosDeTurno=$t->getDatosTurno($id_turno);
-	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente']);
+	$datosDeTurno=$t->getDatosTurno($id_turno,$s);
+	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente'],$s);
 
 	$dni_paciente=$_SESSION['idUsuario'];
 
@@ -62,10 +63,14 @@ if ($_SESSION['tipoUsuario']==0)
 	$u=new Usuario();
 	$m=new Medico();
 
-	$datosDeTurno=$t->getDatosTurno($id_turno);
-	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente']);
-	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio']);
+	$datosDeTurno=$t->getDatosTurno($id_turno,$s);
+	
 
+	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente'],$s);
+		
+	$nombreDelMedico=" ";
+	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio'],$s);
+	
 	$v= new AnularTurnoAdministracion();
 	$v->paciente=$nombreDelPaciente;
 	$v->medico=$nombreDelMedico;

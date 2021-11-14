@@ -6,6 +6,7 @@
 <html>
 <head>
 	<title>Consulta de Turnos</title>
+	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
 </head>
 <body>
 <h1>Próximos turnos para: <?= $this->usuario['nombre']?> <?= $this->usuario['apellido']?></h1>

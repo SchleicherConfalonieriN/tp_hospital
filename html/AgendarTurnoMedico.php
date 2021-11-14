@@ -6,6 +6,7 @@
 <html>
 <head>
 	<title>Buscador de pacientes</title>
+	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
 </head>
 <body>
 <h2>Agendar turno para el dia <?= date("d-m-Y", strtotime($this->dia)) ?> a las <?= $this->hora ?> horas</h2>

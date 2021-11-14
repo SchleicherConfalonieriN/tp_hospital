@@ -8,7 +8,8 @@ require '../models/Usuario.php';
 require '../models/Medico.php';
 require '../models/Turno.php';
 require '../views/AgendarTurnoMedico.php';
-
+require '../class_helper/seguridad.php';
+$s=new seguridad();
 if(($_SESSION['tipoUsuario']!=2)and($_SESSION['tipoUsuario']!=0)){
 	header('Location:./IngresoAlSistema.php');
 	exit();
@@ -55,7 +56,7 @@ $posiblesPacientes=[];
 if (isset($_POST['dni_paciente'])){
 	//validarrrr
 	$dni_paciente=$_POST['dni_paciente'];
-	$t->agendarTurno($dni_medico,$dni_paciente,$fecha,$hora);
+	$t->agendarTurno($dni_medico,$dni_paciente,$fecha,$hora,$s);
 	if ($_SESSION['tipoUsuario']==2){
 		header('Location:./MenuPrincipalMedico.php');
 		exit();
@@ -67,7 +68,7 @@ if (isset($_POST['dni_paciente'])){
 if (isset($_POST['busq'])){
 	//Aca hay que validarrrr
 	$busqueda=$_POST['busq'];
-	$posiblesPacientes= $u->buscarPorNombreApellido($busqueda);
+	$posiblesPacientes= $u->buscarPorNombreApellido($busqueda,$s);
 }
 
 $v=new AgendarTurnoMedico();

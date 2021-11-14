@@ -6,6 +6,8 @@
 <html>
 <head>
 	<title>Sacar Turno</title>
+	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
+		<link rel="stylesheet" type="text/css" href="../css/login.css">
 </head>
 <body>
 <form id="formulario" method="post">
@@ -21,7 +23,7 @@
 
 
 <br/>
-<a href="./MenuPrincipalUsuario.php"><button>Volver</button></a>
+<a href="./MenuPrincipalPaciente.php"><button>Volver</button></a>
 <script type="text/javascript">
 	document.getElementById("fecha").value="<?=$this->dia ?>";
 	

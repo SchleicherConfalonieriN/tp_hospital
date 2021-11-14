@@ -13,7 +13,7 @@ class estudios extends Model{
 			}
 
 			
-			public function DarDeAlta($indentificador,$nombre,$descripcion,$precio,$horario,$s){
+			public function DarDeAlta($id,$nombre,$descripcion,$precio,$horario,$s){
 
 			
 					$this->db->query("INSERT INTO estudios (estudio_id,nom_estudio, desc_estudio, precio, horario) VALUES ('$id','$nombre', '$descripcion', '$precio', '$horario')");
@@ -21,9 +21,9 @@ class estudios extends Model{
 
 
 
-			public function Eliminar($Identificador,$s){
+			public function Eliminar($nombre,$s){
 			
-				$this->db->query("delete from estudios where estudio_id='$Identificador'");
+				$this->db->query("delete from estudios where nom_estudio='$nombre'");
 			}
 
 

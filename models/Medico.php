@@ -34,7 +34,7 @@ class Medico extends Usuario {
 		return $retorno;
 	}
 
-	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$s){
+	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio,$s){
 		$s->dni_validacion($dni);
 		$s->nombre_validacion($nombre);
 		$s->apellido_validacion($apellido);
@@ -45,7 +45,7 @@ class Medico extends Usuario {
 
 		$this->db->query("INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`, `contrasenia`, `tipo`, `mail`) VALUES ('$dni', '$nombre', '$apellido', '$hashcontra', '$tipo', '$mail')");
 
-		$this->db->query("INSERT INTO `medicos` (`dni`, `nom_medico`, `ape_medico`,`especialidad`) VALUES ('$dni', '$nombre', '$apellido', '$especialidad')");
+		$this->db->query("INSERT INTO `medicos` (`dni`, `nom_medico`, `ape_medico`,`especialidad`,`consultorio`,`horario`) VALUES ('$dni', '$nombre', '$apellido', '$especialidad','$consultorio','$horario')");
 	}
 
 	public function eliminarMedico($dni,$s){
@@ -58,6 +58,7 @@ class Medico extends Usuario {
 
 	public function cambiar_consultorio ($dni,$consultorio,$s){
 		$s->dni_validacion($dni);
+		$s->consultorio_validacion($consultorio);
 	//	$s->dni_consultorio($identificador);
 		$this->db->query("UPDATE `medicos` SET consultorio = '$consultorio' where dni='$dni'");
 	}
@@ -65,13 +66,14 @@ class Medico extends Usuario {
 
 	public function cambiar_horario ($dni,$turno,$s){
 		$s->dni_validacion($dni);
+		$s->horario_validacion($turno);
 		//$s->dni_turno($identificador);		
 		$this->db->query("UPDATE `medicos` SET horario = '$turno' 
 		where dni='$dni'");
 	}
 	
 	public function getTodosPorEspecialidad($id){
-		if (!ctype_digit($id)) die("error");
+		$s->id_validacion($id);
 		$this->db->query("SELECT * FROM medicos LEFT JOIN especialidades ON medicos.especialidad=especialidades.especialidad_id where especialidad = " . $id);
 		return $this->db->fetchAll();
 	}

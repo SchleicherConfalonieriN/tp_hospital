@@ -12,6 +12,9 @@ require '../class_helper/seguridad.php';
 	$mail=$_POST['agregar_mail'];
 	$especialidad=$_POST['agregar_especialidad'];
 	$tipo=$_POST['tipo'];
+	$horario=$_POST['horario'];
+	$consultorio=$_POST['consultorio'];
+
 
 
 $s=new seguridad();
@@ -20,7 +23,7 @@ $s=new seguridad();
 		if ($tipo==2){
 
 			$m = new medico();
-			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$s);
+			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio,$s);
 			
 			header('Location:./menuPrincipalAdmin.php'); 
 			}

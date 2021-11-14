@@ -1,13 +1,8 @@
-<?php
-
-//html
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Anular Turno</title>
+	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
 </head>
 <body>
 

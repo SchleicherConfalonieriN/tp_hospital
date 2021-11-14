@@ -6,7 +6,8 @@ require '../models/Usuario.php';
 require '../models/Estudio.php';
 require '../views/AnularEstudio.php';
 require './Sesion.php';
-
+require '../class_helper/seguridad.php';
+$s=new seguridad();
 
 if ($_SESSION['tipoUsuario']!=1)
 {
@@ -28,8 +29,8 @@ $id_turno=($_GET['id']);
 $t=new Turno();
 $e=new Estudio();
 
-$datosDeTurno=$t->getDatosTurno($id_turno);
-$nombreDelEstudio=$e->getDatosEstudio($datosDeTurno['servicio']);
+$datosDeTurno=$t->getDatosTurno($id_turno,$s);
+$nombreDelEstudio=$e->getDatosEstudio($datosDeTurno['servicio'],$s);
 
 
 

@@ -19,7 +19,10 @@ class Usuario extends Model {
 	}
 	
 	public function getDatos($dni){
-		if (!ctype_digit($dni)) die("error");
+		
+
+		$s->dni_validacion($dni);
+
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		return $this->db->fetch();
 	}
@@ -34,9 +37,17 @@ class Usuario extends Model {
 	
 	public function NombreYApellido($dni,$s){
 		
+
+		$s->dni_validacion($dni);
+
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		$datos= $this->db->fetch();
-		$string= $datos['nombre'] ." ". $datos['apellido'];
+		if(isset($datos)){
+		$string=$datos['nombre'] ." ". $datos['apellido'];
+		}
+		else{
+		$string = "No corresponde";
+		}
 		return $string;
 	}
 	
@@ -45,7 +56,7 @@ class Usuario extends Model {
 		$s->nombre_validacion($nombre);
 		$s->apellido_validacion($apellido);
 		$s->email_validacion($mail);
-		//$s->tipo_validacion($tipo);
+		$s->tipo_validacion($tipo);
 
 		$hashcontra=$s->hash_contra($contra);
 		
@@ -61,7 +72,8 @@ class Usuario extends Model {
 	}
 	
 	public function buscarPorNombreApellido($texto){
-		//validarrr
+		
+		$s->descripcion_validacion($texto);
 		$this->db->query("SELECT * from usuarios where nombre like '%" . $texto . "%' or apellido like '%" . $texto . "%'");
 		return $this->db->fetchAll();
 	}

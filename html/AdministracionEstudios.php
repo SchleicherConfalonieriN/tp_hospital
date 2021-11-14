@@ -9,9 +9,7 @@
 <form name= "agregar_estudios"method="post" action="../controllers/registroEstudio.php">
   
 
-  <label for="Identificador">Id:</label><br>
-  <input type="number" id="Identificador" name="identificador" required="required"><br>
-
+  
   <label for="nombre">Nombre:</label><br>
   <input type="text" id="nombre" name="nombre" required="required"><br>
   
@@ -39,7 +37,7 @@
 
 LISTADO DE SERVICIOS DISPONIBLES  
   <tr>
-      <td>Id</td>
+  
       <td>Nombre</td>
       <td>Descripcion</td>
       <td>Precio</td>
@@ -49,7 +47,7 @@ LISTADO DE SERVICIOS DISPONIBLES
 
     <?php foreach ($this->listado_estudios as $e) {?>
     <tr>
-        <td><?php echo $e['estudio_id'] ?></td>
+    
         <td><?php echo $e['nom_estudio'] ?></td>
         <td><?php echo $e['desc_estudio'] ?></td>
         <td><?php echo $e['precio']?></td>
@@ -64,8 +62,8 @@ LISTADO DE SERVICIOS DISPONIBLES
 
 <div>
 <form name= "eliminar_estudios"method="post" action="../controllers/eliminarEstudio.php">
-  <label for="nombre">Identificador:</label><br>
-   <input type="number" name="id" required="required"><br>
+  <label for="nombre">Nombre:</label><br>
+   <input type="text" name="nombre" required="required"><br>
 <input type="submit" value="Eliminar Estudio"></input>
   </form>
 </div>

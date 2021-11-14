@@ -13,7 +13,7 @@ if ($_SESSION['tipoUsuario']==2)
 {
 	$dni=$_SESSION['idUsuario'];
 	$u = new usuario();
-	$datosDelUsuario=$u->getDatos($dni);
+	$datosDelUsuario=$u->getDatos($dni,$s);
 }
 
 if ($_SESSION['tipoUsuario']==0)
@@ -22,7 +22,7 @@ if ($_SESSION['tipoUsuario']==0)
 	//validar
 	$dni=$_GET['id'];
 	$u = new usuario();
-	$datosDelUsuario=$u->getDatos($dni);
+	$datosDelUsuario=$u->getDatos($dni,$s);
 }
 
 
@@ -31,10 +31,10 @@ $hoy=date("Y-m-d");
 $fecha=$hoy;
 if(isset($_GET['fecha'])) $fecha=$_GET['fecha']; //validarrrrrr
 $fecha=date("Y-m-d",strtotime($fecha));
-$turnosAgendados=$t->getTodosPorMedicoYFecha($dni, $fecha);
+$turnosAgendados=$t->getTodosPorMedicoYFecha($dni, $fecha,$s);
 
 $m=new Medico();
-$posiblesTurnos=$m->generarHorariosDeAtencion($dni);
+$posiblesTurnos=$m->generarHorariosDeAtencion($dni,$s);
 
 $turno=[];
 $todosLosTurnos=[];

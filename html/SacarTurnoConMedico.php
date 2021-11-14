@@ -6,6 +6,7 @@
 <html>
 <head>
 	<title>Sacar Turno</title>
+	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
 </head>
 <body>
 <form id="formulario" method="post">

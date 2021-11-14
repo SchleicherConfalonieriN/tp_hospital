@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Ingreso al sistema</title>
+  <link rel="stylesheet" type="text/css" href="../css/fondo.css">
 </head>
 <body>
 
@@ -14,9 +15,6 @@ Bienvenido
  <?php echo  $d['ape_medico']; ?><br><br>
 Su consultorio el dia de hoy es el <?php echo  $d['consultorio'];?>
 </div><br><br><br><br>
-
-
-
 
 <div>
   <table>
