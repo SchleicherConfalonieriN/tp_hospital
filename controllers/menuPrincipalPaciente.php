@@ -25,7 +25,8 @@ $m = new  medico();
 $datos=$u->datos($dni,$s);
 
 $t = new Turno();
-$todosLosTurnos=$t->GetTodosPorUsuario($dni,$s);
+$todosLosTurnos=$t->GetTurnosPorUsuario($dni,$s);
+$todosLosEstudios=$t->GetEstudiosPorUsuario($dni,$s);
 
 
 
@@ -35,5 +36,5 @@ $v= new MenuPrincipal();
 $v->info_medico = $m->informacion($dni,$s);
 $v->usuario=$datos;
 $v->turnos=$todosLosTurnos;
-$v->estudios=$e->getTodos();
+$v->estudios=$todosLosEstudios;
 $v->render();
