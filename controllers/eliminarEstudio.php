@@ -5,7 +5,7 @@ require '../models/estudios.php';
 require '../class_helper/seguridad.php';
 
 
-$nombre=($_POST['nombre']);
+$id=($_POST['Eli_estudio']);
 
 
 
@@ -13,7 +13,7 @@ $s = new seguridad();
 
 
 $e= new estudios();
-$e->eliminar($nombre,$s);
+$e->eliminar($id,$s);
 header('Location:./menuPrincipalAdmin.php'); 
 
 

@@ -40,7 +40,7 @@ class Turno extends Model {
 
 	public function getTodosPorMedico($dni){
 	
-	$s->dni_validacion($dni);
+
 		$this->db->query("SELECT * from turnos  where servicio = " . $dni);
 		return $this->db->fetchAll();
 

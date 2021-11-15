@@ -7,7 +7,7 @@ require '../class_helper/seguridad.php';
 
 $s = new seguridad();
 $e = new estudios();
-$id = $_POST['identificador'];
+$id = $_POST['estudio_id'];
 $nombre     =$_POST['nombre'];
 $descripcion=$_POST['descripcion'];
 $precio		=$_POST['precio'];

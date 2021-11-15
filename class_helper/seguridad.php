@@ -3,6 +3,16 @@
 
 class seguridad{
 	
+public function idEstudio_validacion($id){
+
+	if(!isset($id))throw new ValidationException("ID  invalido");
+	if (!ctype_digit($id)) throw new ValidationException("Id invalido");
+
+	if ($id<1 or $id>150)throw new ValidationException("Valor de Id invalido");/* colocamos 150 como un numero que nos parecio razonable de maxima cantidad de servicios que se pueden tener*/
+
+}
+
+
 
 public function dni_validacion($dni){
 

@@ -15,15 +15,22 @@ class estudios extends Model{
 			
 			public function DarDeAlta($id,$nombre,$descripcion,$precio,$horario,$s){
 
-			
+			$s->idEstudio_validacion($id);
+			$s->precio_validacion($precio);
+			$s->descripcion_validacion($descripcion);
+			$s->horario_validacion($horario);
+			$s->nombre_validacion($nombre);
+				
 					$this->db->query("INSERT INTO estudios (estudio_id,nom_estudio, desc_estudio, precio, horario) VALUES ('$id','$nombre', '$descripcion', '$precio', '$horario')");
 			}
 
 
 
-			public function Eliminar($nombre,$s){
+			public function Eliminar($id,$s){
 			
-				$this->db->query("delete from estudios where nom_estudio='$nombre'");
+			$s->idEstudio_validacion($id);
+
+				$this->db->query("delete from estudios where estudio_id='$id'");
 			}
 
 
