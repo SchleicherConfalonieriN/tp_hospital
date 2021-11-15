@@ -19,6 +19,7 @@ if(!ctype_digit($_GET['id'])) {
 	header('Location:./IngresoAlSistema.php');
 	exit();
 }
+$s=new seguridad();
 
 if ($_SESSION['tipoUsuario']==1)
 {
@@ -26,7 +27,7 @@ if ($_SESSION['tipoUsuario']==1)
 	$t=new Turno();
 	$m=new Medico();
 
-	$datosDeTurno=$t->getDatosTurno($id_turno);
+	$datosDeTurno=$t->getDatosTurno($id_turno,$s);
 	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio'],$s);
 	
 	$dni_paciente=$_SESSION['idUsuario'];

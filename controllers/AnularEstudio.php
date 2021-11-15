@@ -3,7 +3,7 @@
 require '../fw/fw.php';
 require '../models/Turno.php';
 require '../models/Usuario.php';
-require '../models/Estudio.php';
+require '../models/Estudios.php';
 require '../views/AnularEstudio.php';
 require './Sesion.php';
 require '../class_helper/seguridad.php';
@@ -27,7 +27,7 @@ if(!ctype_digit($_GET['id'])) {
 
 $id_turno=($_GET['id']);
 $t=new Turno();
-$e=new Estudio();
+$e=new Estudios();
 
 $datosDeTurno=$t->getDatosTurno($id_turno,$s);
 $nombreDelEstudio=$e->getDatosEstudio($datosDeTurno['servicio'],$s);
