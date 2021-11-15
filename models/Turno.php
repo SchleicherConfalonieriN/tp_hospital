@@ -20,7 +20,6 @@ class Turno extends Model {
 	}
 
 
-	
 
 	public function cambiarTurnoFecha($id,$fecha,$hora,$s){
 			$s->id_validacion($id);
@@ -78,8 +77,31 @@ class Turno extends Model {
 		$this->db->query("UPDATE `turnos` SET consultorio = (select consultorio from medicos WHERE medicos.dni = turnos.servicio)");
 	}
 	
+	public function agendarEstudio($dni_medico,$dni_usuario,$fecha,$hora,$s){
+	
+			$s->dni_validacion($dni_usuario);
+			$s->id_validacion($dni_medico);
+
+			$s->fecha_validacion($fecha);
+			$s->hora_validacion($hora);
+		$this->db->query("INSERT INTO turnos (servicio, dni_paciente, fecha, hora) values ( '$dni_medico' , '$dni_usuario' , '$fecha' , '$hora' )");
+
+		$this->db->query("UPDATE `turnos` SET consultorio = (select consultorio from medicos WHERE medicos.dni = turnos.servicio)");
+	}
+	
 	public function getTurnosAgendados($dni_medico, $fecha,$s){
 	$s->dni_validacion($dni_medico);
+
+
+	$s->fecha_validacion($fecha);
+			
+		$this->db->query("SELECT * FROM turnos WHERE servicio = '$dni_medico' and fecha= '$fecha'");
+		//$this->db->query("SELECT * FROM turnos WHERE dni_medico =" . $dni_medico);
+		return $this->db->fetchAll();
+	}
+	
+		public function getEstudiosAgendados($dni_medico, $fecha,$s){
+	$s->id_validacion($dni_medico);
 
 
 	$s->fecha_validacion($fecha);
