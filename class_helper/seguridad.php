@@ -18,6 +18,10 @@ public function nombre_validacion($nombre){
 
 		if(!isset($nombre))throw new ValidationException("Nombre invalido", 1);
 		if(preg_match('/^[a-zA-Z]*$/', $nombre)!=1)throw new ValidationException("Nombre invalido", 1);
+	
+
+		if (strlen($nombre)<3 OR strlen($nombre)>15)throw new ValidationException("Nombre invalido", 1);
+
 	}
 
 
@@ -25,6 +29,9 @@ public function apellido_validacion($apellido){
 
 	if(!isset($apellido))throw new ValidationException("Apellido invalido", 1);
 		if(preg_match('/^[a-zA-Z]*$/', $apellido)!=1)throw new ValidationException("Error Processing Request", 1);
+
+
+			if (strlen($apellido)<3 OR strlen($apellido)>15)throw new ValidationException("Nombre invalido", 1);
 	}
 
 

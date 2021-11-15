@@ -4,7 +4,7 @@
 
 class Turno extends Model {
 	
-	public function getTodosPorUsuario($dni,$s){// BUSCAR ACOMODAR S
+	public function getTodosPorUsuario($dni){// BUSCAR ACOMODAR S
 		
 		$s->dni_validacion($dni);
 
@@ -20,6 +20,7 @@ class Turno extends Model {
 	}
 
 
+	
 
 	public function cambiarTurnoFecha($id,$fecha,$hora,$s){
 			$s->id_validacion($id);
@@ -37,14 +38,14 @@ class Turno extends Model {
 		return $this->db->fetchAll();
 	}
 
-	public function getTodosPorMedico($dni,$s){
+	public function getTodosPorMedico($dni){
 	
 	$s->dni_validacion($dni);
 		$this->db->query("SELECT * from turnos  where servicio = " . $dni);
 		return $this->db->fetchAll();
 
 	}
-	public function coincideIdYPaciente($turno_id,$dni,$s){
+	public function coincideIdYPaciente($turno_id,$dni){
 		$s->dni_validacion($dni);
 		if (!ctype_digit($turno_id)) die("error");
 		$this->db->query("SELECT dni_paciente FROM turnos WHERE turno_id = " . $turno_id);
@@ -68,19 +69,7 @@ class Turno extends Model {
 	public function agendarTurno($dni_medico,$dni_usuario,$fecha,$hora,$s){
 	
 			$s->dni_validacion($dni_usuario);
-			$s->dni_validacion($dni_medico);
-
-			$s->fecha_validacion($fecha);
-			$s->hora_validacion($hora);
-		$this->db->query("INSERT INTO turnos (servicio, dni_paciente, fecha, hora) values ( '$dni_medico' , '$dni_usuario' , '$fecha' , '$hora' )");
-
-		$this->db->query("UPDATE `turnos` SET consultorio = (select consultorio from medicos WHERE medicos.dni = turnos.servicio)");
-	}
-	
-	public function agendarEstudio($dni_medico,$dni_usuario,$fecha,$hora,$s){
-	
-			$s->dni_validacion($dni_usuario);
-			$s->id_validacion($dni_medico);
+			
 
 			$s->fecha_validacion($fecha);
 			$s->hora_validacion($hora);
@@ -90,18 +79,7 @@ class Turno extends Model {
 	}
 	
 	public function getTurnosAgendados($dni_medico, $fecha,$s){
-	$s->dni_validacion($dni_medico);
 
-
-	$s->fecha_validacion($fecha);
-			
-		$this->db->query("SELECT * FROM turnos WHERE servicio = '$dni_medico' and fecha= '$fecha'");
-		//$this->db->query("SELECT * FROM turnos WHERE dni_medico =" . $dni_medico);
-		return $this->db->fetchAll();
-	}
-	
-		public function getEstudiosAgendados($dni_medico, $fecha,$s){
-	$s->id_validacion($dni_medico);
 
 
 	$s->fecha_validacion($fecha);
@@ -120,7 +98,7 @@ class Turno extends Model {
 	}
 	
 	public function esTurnoLibre($dni_medico,$fecha,$hora,$s){
-			$s->dni_validacion($dni_medico);
+		
 
 			$s->fecha_validacion($fecha);
 			$s->fecha_validacion($hora);

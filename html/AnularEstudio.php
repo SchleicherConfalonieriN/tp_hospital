@@ -8,8 +8,6 @@
 <html>
 <head>
 	<title>Anular Estudio</title>
-		<link rel="stylesheet" type="text/css" href="../css/fondo.css">
-	<link rel="stylesheet" type="text/css" href="../css/paciente.css">
 </head>
 <body>
 

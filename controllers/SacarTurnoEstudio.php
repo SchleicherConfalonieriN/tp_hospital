@@ -8,7 +8,7 @@ require '../models/estudios.php';
 require '../models/Turno.php';
 require '../views/SacarTurnoEstudio.php';
 require '../class_helper/seguridad.php';
-
+$s=new seguridad();
 
 if(!isset($_GET['id'])){
 	header('Location:./IngresoAlSistema.php');
@@ -30,7 +30,6 @@ $t=new Turno();
 $turnosDisponibles=[];
 $fecha=date("Y-m-d");;
 $mensaje="";
-$s=new seguridad();
 
 
 if(isset($_POST['fecha'])){
@@ -59,7 +58,7 @@ if(isset($_POST['fecha'])){
 	
 		$turnosPosibles=$e->generarHorariosDeEstudios($id_estudio,$s);
 		
-		$turnosAgendados=$t->getEstudiosAgendados($id_estudio,$fecha,$s);
+		$turnosAgendados=$t->getTurnosAgendados($id_estudio,$fecha,$s);
 		
 
 		foreach($turnosPosibles as $tp){
@@ -75,7 +74,7 @@ if(isset($_POST['fecha'])){
 		if(isset($_POST['hora'])){
 			//validar hora
 			$hora=$_POST['hora'];
-			$t->agendarEstudio($id_estudio,$dni_usuario,$fecha,$hora,$s);
+			$t->agendarTurno($id_estudio,$dni_usuario,$fecha,$hora,$s);
 			header('Location:./MenuPrincipalPaciente.php');
 			exit();
 	}

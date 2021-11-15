@@ -37,7 +37,7 @@ class estudios extends Model{
 
 
 	
-	public function generarHorariosDeEstudios($identificador){
+	public function generarHorariosDeEstudios($identificador,$s){
 		//Tendriamos que ver cada cuanto queremos que se generen los turnos para estudios. Aca esta hecho cada 15 minutos a partir de las 8:00 am
 		$this->db->query("SELECT horario FROM estudios where estudio_id = " . $identificador . " limit 1");
 		$h=$this->db->fetch();
