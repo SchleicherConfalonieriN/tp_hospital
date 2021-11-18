@@ -1,0 +1,35 @@
+table td{
+size: 10px;
+border: 1px solid darkblue;
+padding: 7px;
+}
+
+
+
+#APP{
+	display: flex;
+	background-color: whitesmoke;
+	flex-direction: column;
+	align-content: center;
+	align-items: center;
+	margin-left: 25%;
+	margin-right: 25%;
+	border-style: solid;
+	border-color: darkblue;
+	border-width: 3px;
+
+}
+
+#eliminar_turno
+
+
+#edit_medico{
+
+margin-top: 10%;
+padding-right: 7px;
+padding-left: 7px;
+border-style: solid;
+border-color: darkblue;
+border-width: 3px;
+margin-bottom: 10%;
+}

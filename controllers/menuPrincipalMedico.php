@@ -4,10 +4,11 @@ require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Medico.php';
 require '../models/Turno.php';
-require '../views/MenuPrincipalMedico.php';//COLOCAR VISTA CORRECTO DESPUES DE CREARLA
+require '../views/MenuPrincipalMedico.php';
 
 
-$dni=$_SESSION['idUsuario'];
+
+$dni=$_SESSION['idUsuario']; // isset en require Sesion
 
 
 $m= new medico();

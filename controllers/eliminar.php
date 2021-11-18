@@ -7,6 +7,11 @@ require './Sesion.php';
 require '../models/Medico.php';
 
 
+if (!isset($_POST['eliminar_dni'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+
 $dni=($_POST['eliminar_dni']);
 
 $m= new medico();

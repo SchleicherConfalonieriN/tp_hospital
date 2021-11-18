@@ -20,7 +20,7 @@ if ($_SESSION['tipoUsuario']==2)
 if ($_SESSION['tipoUsuario']==0)
 {
 	if(!(isset($_GET['id']))) header('Location:./MenuPrincipalAdministracion.php');
-	//validar
+	
 	$dni=$_GET['id'];
 	$u = new usuario();
 	$datosDelUsuario=$u->getDatos($dni,$s);
@@ -30,7 +30,7 @@ if ($_SESSION['tipoUsuario']==0)
 $t = new Turno();
 $hoy=date("Y-m-d");
 $fecha=$hoy;
-if(isset($_GET['fecha'])) $fecha=$_GET['fecha']; //validarrrrrr
+if(isset($_GET['fecha'])) $fecha=$_GET['fecha']; 
 $fecha=date("Y-m-d",strtotime($fecha));
 $turnosAgendados=$t->getTodosPorMedicoYFecha($dni, $fecha,$s);
 

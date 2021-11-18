@@ -15,15 +15,10 @@ if(!isset($_GET['id'])){
 	exit();
 }
 
-if(!ctype_digit($_GET['id'])){
-	header('Location:./IngresoAlSistema.php');
-	exit();
-}
-
 
 
 $dni_medico=$_GET['id'];
-$dni_usuario=$_SESSION['idUsuario'];
+$dni_usuario=$_SESSION['idUsuario']; // isset en require session
 
 $m=new Medico();
 $t=new Turno();

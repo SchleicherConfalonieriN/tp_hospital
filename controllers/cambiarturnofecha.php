@@ -7,6 +7,19 @@ require '../models/Medico.php';
 require '../models/Turno.php';
 
 
+if (!isset($_POST['hora'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+if (!isset($_POST['fecha'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+if (!isset($_POST['dni'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+
 
 $fecha=$_POST['fecha'];
 $hora=$_POST['hora'];

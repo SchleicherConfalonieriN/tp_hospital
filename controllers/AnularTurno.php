@@ -12,12 +12,9 @@ require './Sesion.php';
 if(!isset($_GET['id'])) {
 	header('Location:./IngresoAlSistema.php');
 	exit();
-}
 
-if(!ctype_digit($_GET['id'])) {
-	header('Location:./IngresoAlSistema.php');
-	exit();
-}
+}else{
+
 
 $id_turno=($_GET['id']);
 //validar
@@ -31,9 +28,7 @@ if($_SESSION['tipoUsuario']==0){
 }
 
 $dni_usuario=$_SESSION['idUsuario'];
-//validar
 
-//verifico que el turno a anular corresponda al usuario logueado
 if(!$t->coincideIdYUsuario($id_turno,$dni_usuario,$s)){
 	header('Location:./MenuPrincipalPaciente.php');
 	exit();
@@ -42,6 +37,8 @@ $t->anularTurno($id_turno,$s);
 if($_SESSION['tipoUsuario']==2) {
 	header('Location:./MenuPrincipalMedico.php');
 	exit();
+}
+
 }
 header('Location:./MenuPrincipalPaciente.php');
 

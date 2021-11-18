@@ -3,18 +3,18 @@
 <head>
 	<title>Ingreso al sistema</title>
   <link rel="stylesheet" type="text/css" href="../css/fondo.css">
+  <link rel="stylesheet" type="text/css" href="../css/medico.css">
 </head>
 <body>
 
 <div>
 
-
-Bienvenido
+<div id="APP">
+<h1>Bienvenido
 <?php foreach ($this->datos as $d)
  echo  $d['nom_medico']; ?>  
- <?php echo  $d['ape_medico']; ?><br><br>
-Su consultorio el dia de hoy es el <?php echo  $d['consultorio'];?>
-</div><br><br><br><br>
+ <?php echo  $d['ape_medico']; ?></h1>
+<h3>Su consultorio asignado es el <?php echo  $d['consultorio'];?></h3>
 
 <div>
   <table>
@@ -25,32 +25,35 @@ Su consultorio el dia de hoy es el <?php echo  $d['consultorio'];?>
        <td>hora de consulta</td>
       <td>consultorio</td>
     </tr>
-    <?php echo "TURNOS RESERVADOS";  ?><br><br>
+  <h3>Turnos Reservados</h3>
     <?php foreach ($this->turnos_reservados as $t) {?>
     <tr>
-          <td><?php echo  $t['turno_id'] ?></td>
-          <td><?php echo  $t['dni_paciente'] ?></td>
-          <td><?php echo  $t['fecha'] ?></td>
-           <td><?php echo  $t['hora'] ?></td>
-           <td><?php echo $t['consultorio'] ?></td>
+          <td><?php echo htmlentities($t['turno_id']) ?></td>
+          <td><?php echo htmlentities($t['dni_paciente']) ?></td>
+          <td><?php echo htmlentities($t['fecha']) ?></td>
+          <td><?php echo htmlentities($t['hora']) ?></td>
+          <td><?php echo htmlentities($t['consultorio']) ?></td>
     </tr>
     <?php } ?>
   </table>
 </div>
 
-<div>
+<div id="edit_medico">
+  <h4>Modificar Turno</h4>
   <form name="modificar_turno"method="post" action="../controllers/cambiarturnofecha.php">
-    
+    <div>
     <label for="id">Id del Turno:</label><br>
    <input type="number"  name="dni" required="required"><br>
+</div>
 
-
+  <div>
     <label for="id">Fecha Nueva del Turno:</label><br>
    <input type="date"  name="fecha" required="required"><br>
-
+</div>
+<div>
    <label for="id">Hora Nueva del Turno:</label><br>
    <input type="time"  name="hora" required="required"><br>
-
+</div>
 <input type="submit" value="Modificar Turno"></input>
 
   </form>
@@ -60,8 +63,8 @@ Su consultorio el dia de hoy es el <?php echo  $d['consultorio'];?>
 
 
 
-
-<div>
+<div id="elimianr_turno">
+  <h4>Eliminar Turno</h4>
 <form name= "eliminar_turno"method="post" action="../controllers/AnularTurnoAdmin.php">
  
 
@@ -73,16 +76,17 @@ Su consultorio el dia de hoy es el <?php echo  $d['consultorio'];?>
 
 
 
-<div>
+
 <form name= "cambiar_contra"method="post" action="../controllers/cambiarcontraseña.php">
   <label for="contraseña">Contraseña:</label><br>
    <input type="number" id="dni" name="contraseña" required="required"><br>
 <input type="submit" value="Cambiar Contraseña"></input>
   </form>
-</div>
+
 
 
 <a href="./CerrarSesion.php"><button>Cerrar Sesión</button></a>
+</div>
 
 </body>
 </html>

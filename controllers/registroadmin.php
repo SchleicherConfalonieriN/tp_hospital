@@ -5,6 +5,48 @@ require './Sesion.php';
 require '../models/Medico.php';
 
 
+if(!isset($_POST['agregar_dni'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+
+
+if(!isset($_POST['agregar_nombre'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+
+if(!isset($_POST['agregar_apellido'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+
+if(!isset($_POST['agregar_contra'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+
+if(!isset($_POST['agregar_mail'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+if(!isset($_POST['agregar_especialidad'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+if(!isset($_POST['tipo'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+if(!isset($_POST['horario'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+if(!isset($_POST['consultorio'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+
 
 	$dni=($_POST['agregar_dni']);
 	$nombre=$_POST['agregar_nombre'];

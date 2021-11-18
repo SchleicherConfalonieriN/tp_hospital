@@ -18,7 +18,6 @@ if ($_SESSION['tipoUsuario']!=1)
 
 
 
-$id_turno=($_GET['id']);
 $t=new Turno();
 $e=new estudios();
 
@@ -27,11 +26,12 @@ $e=new estudios();
 if(!isset($_GET['id'])) {
 	header('Location:./menuPrincipalPaciente.php');
 	exit();
-}else{
+}
 
+$id_turno=($_GET['id']);
 $datosDeTurno=$t->getDatosTurno($id_turno,$s);
 $nombreDelEstudio=$e->getDatosEstudio($datosDeTurno['servicio'],$s);
-}
+
 
 
 $dni_paciente=$_SESSION['idUsuario'];

@@ -7,7 +7,17 @@ require '../models/Usuario.php';
 require '../views/IngresoAlSistema.php';
 session_start();
 
-if(isset($_POST['dni'],$_POST["contra"])){
+if (count($_POST)>0){
+if (!isset($_POST['dni'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+if (!isset($_POST['contra'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+
+
 $dni=$_POST['dni'];
 $contra=$_POST["contra"];
 
@@ -37,8 +47,9 @@ $datos=$u->datos($dni,$s);
 		}	
 	}
 }
+
 $v = new IngresoAlSistema();
 $v->render();
 ?>
-<!--como seria el html -->
+
 

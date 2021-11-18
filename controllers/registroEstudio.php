@@ -5,10 +5,29 @@ require '../class_helper/seguridad.php';
 require '../models/estudios.php';
 
 
+if(!isset($_POST['nombre'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+if(!isset($_POST['descripcion'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+if(!isset($_POST['precio'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+if(!isset($_POST['horario'])){
+    header('Location:./IngresoAlSistema.php');
+    exit();
+}
+
+
+
 
 
 $e = new estudios();
-$id = $_POST['estudio_id'];
+
 $nombre     =$_POST['nombre'];
 $descripcion=$_POST['descripcion'];
 $precio		=$_POST['precio'];

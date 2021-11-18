@@ -15,10 +15,6 @@ if(!isset($_GET['id'])) {
 	exit();
 }
 
-if(!ctype_digit($_GET['id'])) {
-	header('Location:./IngresoAlSistema.php');
-	exit();
-}
 
 if ($_SESSION['tipoUsuario']==1)
 {

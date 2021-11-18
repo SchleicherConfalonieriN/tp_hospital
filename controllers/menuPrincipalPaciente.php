@@ -3,6 +3,7 @@
 require '../class_helper/seguridad.php';
 require '../fw/fw.php';
 require './Sesion.php';
+require '../models/Usuario.php';
 require '../models/Medico.php';
 require '../models/estudios.php';
 require '../models/Turno.php';
@@ -16,7 +17,7 @@ if ($_SESSION['tipoUsuario']!=1)
 }
 
 
-$dni=$_SESSION['idUsuario'];
+$dni=$_SESSION['idUsuario']; //isset en require session
 
 $e = new estudios();
 $u = new usuario();

@@ -7,6 +7,18 @@ require '../models/Medico.php';
 require '../models/Turno.php';
 
 
+
+if (!isset($_POST['dni'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+
+if (!isset($_POST['consultorio'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+
+
 $consultorio = $_POST['consultorio'];
 $dni =$_POST['dni'];
 

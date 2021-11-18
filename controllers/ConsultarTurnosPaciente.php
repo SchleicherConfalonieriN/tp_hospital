@@ -19,12 +19,11 @@ if (!isset($_POST['dni_paciente'])){
 }
 
 
-$s=new seguridad();
+
 $dni=$_POST['dni_paciente'];
 
 $e = new estudio();
 $u = new usuario();
-$s =new seguridad();
 $m = new  medico();
 $datos=$u->datos($dni,$s);
 

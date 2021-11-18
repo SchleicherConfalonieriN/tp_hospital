@@ -10,6 +10,14 @@ require './Sesion.php';
 if($_SESSION['tipoUsuario']==0){
 $id = $_POST['id'];
 
+
+
+if (!isset($_POST['id'])){
+header('Location:./IngresoAlSistema.php');
+exit();
+}
+
+
 $t=new Turno();
 
 $t->anularTurno($id,$s);
@@ -34,4 +42,6 @@ $t=new Turno();
 $t->anularTurno($id,$s);
 header('Location:./menuPrincipalMedico.php');
  }
+
+ 
  ?>
