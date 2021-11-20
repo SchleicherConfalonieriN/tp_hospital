@@ -50,10 +50,10 @@
 
     <?php foreach ($this->listado_estudios as $e) {?>
     <tr>
-        <td><?php echo $e['estudio_id'] ?></td>
-        <td><?php echo $e['nom_estudio'] ?></td>
-        <td><?php echo $e['desc_estudio'] ?></td>
-        <td><?php echo $e['precio']?></td>
+        <td><?php echo htmlentities($e['estudio_id']) ?></td>
+        <td><?php echo htmlentities($e['nom_estudio']) ?></td>
+        <td><?php echo htmlentities($e['desc_estudio'])  ?></td>
+        <td><?php echo htmlentities($e['precio'])?></td>
        
     </tr>
     <?php } ?>

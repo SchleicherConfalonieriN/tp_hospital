@@ -42,7 +42,7 @@
 		document.getElementById("formulario").submit();
 	}	
 	
-	var datos= <?php echo json_encode($this->pacientes) ?>;
+	var datos= <?php echo htmlentities(json_encode($this->pacientes)) ?>;
 	
 	datos.forEach(function(valor,indice){
 		objTr = document.createElement("tr");

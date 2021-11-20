@@ -12,11 +12,11 @@ $dni=$_SESSION['idUsuario']; // isset en require Sesion
 
 
 $m= new medico();
-$datos = $m->informacion($dni,$s);
+$datos = $m->informacion($dni);
 
 
 $t = new Turno();
-$turnos_reservados=$t->GetTodosPorMedico($dni,$s);
+$turnos_reservados=$t->GetTodosPorMedico($dni);
 
 
 

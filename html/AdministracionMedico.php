@@ -68,12 +68,12 @@
 
     <?php foreach ($this->listado as $l) {?>
     <tr>
-        <td><?php echo $l['dni'] ?></td>
-        <td><?php echo $l['nom_medico'] ?></td>
-        <td><?php echo $l['ape_medico'] ?></td>
-        <td><?php echo $l['especialidad']?></td>
-        <td><?php echo $l['horario']?></td>
-        <td><?php echo $l['consultorio']?></td>
+        <td><?php echo htmlentities($l['dni']) ?></td>
+        <td><?php echo htmlentities($l['nom_medico']) ?></td>
+        <td><?php echo htmlentities($l['ape_medico']) ?></td>
+        <td><?php echo htmlentities($l['especialidad'])?></td>
+        <td><?php echo htmlentities($l['horario'])?></td>
+        <td><?php echo htmlentities($l['consultorio'])?></td>
     </tr>
     <?php } ?>
   </table>

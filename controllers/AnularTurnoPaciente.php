@@ -23,7 +23,7 @@ if ($_SESSION['tipoUsuario']==1)
 	$m=new Medico();
 
 	$datosDeTurno=$t->getDatosTurno($id_turno);
-	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio'],$s);
+	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio']);
 	
 	$dni_paciente=$_SESSION['idUsuario'];
 
@@ -40,7 +40,7 @@ if ($_SESSION['tipoUsuario']==2)
 	$t=new Turno();
 	$u=new Usuario();
 
-	$datosDeTurno=$t->getDatosTurno($id_turno,$s);
+	$datosDeTurno=$t->getDatosTurno($id_turno);
 	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente'],$s);
 
 	$dni_paciente=$_SESSION['idUsuario'];
@@ -59,10 +59,10 @@ if ($_SESSION['tipoUsuario']==0)
 	$u=new Usuario();
 	$m=new Medico();
 
-	$datosDeTurno=$t->getDatosTurno($id_turno,$s);
+	$datosDeTurno=$t->getDatosTurno($id_turno);
 	
 
-	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente'],$s);
+	$nombreDelPaciente=$u->nombreYApellido($datosDeTurno['dni_paciente']);
 		
 	$nombreDelMedico=" ";
 	$nombreDelMedico=$m->nombreYApellido($datosDeTurno['servicio'],$s);

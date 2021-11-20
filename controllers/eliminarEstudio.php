@@ -14,7 +14,7 @@ $id=($_POST['Eli_estudio']);
 
 
 $e= new estudios();
-$e->eliminar($id,$s);
+$e->eliminar($id);
 header('Location:./menuPrincipalAdmin.php'); 
 
 

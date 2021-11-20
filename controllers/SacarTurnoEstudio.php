@@ -51,9 +51,9 @@ if(isset($_POST['fecha'])){
 	
 	if ($fechavalida==true){
 	
-		$turnosPosibles=$e->generarHorariosDeEstudios($id_estudio,$s);
+		$turnosPosibles=$e->generarHorariosDeEstudios($id_estudio);
 		
-		$turnosAgendados=$t->getTurnosAgendados($id_estudio,$fecha,$s);
+		$turnosAgendados=$t->getTurnosAgendados($id_estudio,$fecha);
 		
 
 		foreach($turnosPosibles as $tp){
@@ -69,7 +69,7 @@ if(isset($_POST['fecha'])){
 		if(isset($_POST['hora'])){
 			//validar hora
 			$hora=$_POST['hora'];
-			$t->agendarTurno($id_estudio,$dni_usuario,$fecha,$hora,$s);
+			$t->agendarTurno($id_estudio,$dni_usuario,$fecha,$hora);
 			header('Location:./MenuPrincipalPaciente.php');
 			exit();
 	}

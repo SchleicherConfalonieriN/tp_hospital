@@ -11,10 +11,10 @@
 
 <div id="APP">
 <h1>Bienvenido
-<?php foreach ($this->datos as $d)
- echo  $d['nom_medico']; ?>  
- <?php echo  $d['ape_medico']; ?></h1>
-<h3>Su consultorio asignado es el <?php echo  $d['consultorio'];?></h3>
+<?php foreach ($this->datos as $d) 
+echo htmlentities($d['nom_medico']); ?>  
+<?php echo  htmlentities($d['ape_medico']); ?></h1>
+<h3>Su consultorio asignado es el <?php echo  htmlentities($d['consultorio']);?></h3>
 
 <div>
   <table>
@@ -61,9 +61,9 @@
 
 
 
+<div id="op_turno">
 
-
-<div id="elimianr_turno">
+<div id="eliminar_turno">
   <h4>Eliminar Turno</h4>
 <form name= "eliminar_turno"method="post" action="../controllers/AnularTurnoAdmin.php">
  
@@ -74,7 +74,7 @@
   </form>
 </div>
 
-
+</div>
 
 
 <form name= "cambiar_contra"method="post" action="../controllers/cambiarcontraseña.php">

@@ -27,7 +27,7 @@ $dni=$_POST['dni'];
 
 $t= new Turno();
 
-$t->cambiarTurnoFecha($dni,$fecha,$hora,$s);
+$t->cambiarTurnoFecha($dni,$fecha,$hora);
 
 header('Location:./MenuPrincipalMedico.php')
  ?>

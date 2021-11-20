@@ -20,16 +20,31 @@ padding: 7px;
 
 }
 
-#eliminar_turno
+#op_turno{
+align-content: none;
+margin-left: 2px;
+}
+
+
+#eliminar_turno{
+align-items: flex-end;
+margin-right: 2px;
+padding-right: 7px;
+padding-left: 7px;
+border-style: solid;
+border-color: darkblue;
+border-width: 3px;
+
+}
 
 
 #edit_medico{
-
+align-items: flex-start;
 margin-top: 10%;
 padding-right: 7px;
 padding-left: 7px;
 border-style: solid;
 border-color: darkblue;
 border-width: 3px;
-margin-bottom: 10%;
+margin-bottom: 5%;
 }

@@ -33,7 +33,7 @@ $descripcion=$_POST['descripcion'];
 $precio		=$_POST['precio'];
 $horario    =$_POST['horario'];
 
-$e->DarDeAlta($nombre,$descripcion,$precio,$horario,$s);
+$e->DarDeAlta($nombre,$descripcion,$precio,$horario);
 
 header('Location:./menuPrincipalAdmin.php'); 
  ?>

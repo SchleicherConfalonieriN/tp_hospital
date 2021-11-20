@@ -26,6 +26,6 @@ $dni =$_POST['dni'];
 $m = new medico ();
 
 
-$m->cambiar_consultorio($dni,$consultorio,$s);
+$m->cambiar_consultorio($dni,$consultorio);
 header('Location:./menuPrincipalAdmin.php');
  ?>

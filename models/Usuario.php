@@ -7,9 +7,9 @@
 class Usuario extends Model {
 	
 
-	public function datos($dni,$s){
+	public function datos($dni){
 
-		$s->dni_validacion($dni);
+		seguridad::dni_validacion($dni);
 		
 		$this->db->query("SELECT * from usuarios where dni =" . $dni);
 		if (($this->db->numRows()!=1)) return false;
@@ -21,24 +21,24 @@ class Usuario extends Model {
 	public function getDatos($dni){
 		
 
-		$s->dni_validacion($dni);
+		seguridad::dni_validacion($dni);
 
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		return $this->db->fetch();
 	}
 	
 	
-	public function UsuarioExistente($dni,$s){
-		$s->dni_validacion($dni);
+	public function UsuarioExistente($dni){
+		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from usuarios where dni = " . $dni);
 		if (($this->db->numRows()!=0)) return true;
 		return false;
 	}
 	
-	public function NombreYApellido($dni,$s){
+	public function NombreYApellido($dni){
 		
 
-		$s->dni_validacion($dni);
+		seguridad::dni_validacion($dni);
 
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		$datos= $this->db->fetch();
@@ -51,12 +51,12 @@ class Usuario extends Model {
 		return $string;
 	}
 	
-	public function DarDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo,$s){
-		$s->dni_validacion($dni);
-		$s->nombre_validacion($nombre);
-		$s->apellido_validacion($apellido);
-		$s->email_validacion($mail);
-		$s->tipo_validacion($tipo);
+	public function DarDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo){
+		seguridad::dni_validacion($dni);
+		seguridad::nombre_validacion($nombre);
+		seguridad::apellido_validacion($apellido);
+		seguridad::email_validacion($mail);
+		seguridad::tipo_validacion($tipo);
 
 		$hashcontra=$s->hash_contra($contra);
 		
@@ -65,27 +65,28 @@ class Usuario extends Model {
 		$this->db->query("INSERT INTO usuarios (dni, nombre, apellido, contrasenia, tipo, mail) VALUES ('$dni', '$nombre', '$apellido', '$hashcontra', $tipo , '$mail')");
 	}
 
-	public function verificacion_usuario($dni,$s){
-		$s->dni_validacion($dni);
+	public function verificacion_usuario($dni){
+		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		$c = $this->db->fetch();
 	}
 	
 	public function buscarPorNombreApellido($texto){
 		
-		$s->descripcion_validacion($texto);
+		seguridad::descripcion_validacion($texto);
 		$this->db->query("SELECT * from usuarios where nombre like '%" . $texto . "%' or apellido like '%" . $texto . "%'");
 		return $this->db->fetchAll();
 	}
 
-	public function cambiar_contraseña($dni,$contra,$s){
+	public function cambiar_contraseña($dni,$contra){
 
-		$s->dni_validacion($dni);
-		$s->contra_validacion($contra);
-		$hashcontra=$s->hash_contra($contra);
+		seguridad::dni_validacion($dni);
+		seguridad::contra_validacion($contra);
+		$hashcontra=seguridad::hash_contra($contra);
 	
 		$this->db->query("UPDATE usuarios SET contrasenia  = '$hashcontra' where dni = $dni");
 	}
 }
 
 //Exceptions
+

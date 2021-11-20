@@ -29,6 +29,6 @@ $dni =$_POST['dni'];
 $m = new medico ();
 $s = new seguridad ();
 
-$m->cambiar_horario($dni,$horario,$s);
+$m->cambiar_horario($dni,$horario);
 header('Location:./menuPrincipalAdmin.php');
  ?>

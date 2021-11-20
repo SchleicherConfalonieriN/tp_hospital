@@ -54,7 +54,7 @@ $hora=date("H:i", strtotime($_GET['hora']));
 $posiblesPacientes=[];
 
 if (isset($_POST['dni_paciente'])){
-	//validarrrr
+
 	$dni_paciente=$_POST['dni_paciente'];
 	$t->agendarTurno($dni_medico,$dni_paciente,$fecha,$hora,$s);
 	if ($_SESSION['tipoUsuario']==2){

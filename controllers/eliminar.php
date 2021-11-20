@@ -15,7 +15,7 @@ exit();
 $dni=($_POST['eliminar_dni']);
 
 $m= new medico();
-$m->eliminarMedico($dni,$s);
+$m->eliminarMedico($dni);
 header('Location:./menuPrincipalAdmin.php'); 
 
 

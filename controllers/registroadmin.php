@@ -3,6 +3,7 @@ require '../class_helper/seguridad.php';
 require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Medico.php';
+require '../models/Usuario.php';
 
 
 if(!isset($_POST['agregar_dni'])){
@@ -34,7 +35,7 @@ if(!isset($_POST['agregar_especialidad'])){
     header('Location:./IngresoAlSistema.php');
     exit();
 }
-if(!isset($_POST['tipo'])){
+if(!isset($_POST['gr1'])){
     header('Location:./IngresoAlSistema.php');
     exit();
 }
@@ -54,21 +55,21 @@ if(!isset($_POST['consultorio'])){
 	$contra=$_POST['agregar_contra'];
 	$mail=$_POST['agregar_mail'];
 	$especialidad=$_POST['agregar_especialidad'];
-	$tipo=$_POST['tipo'];
+	$tipo=$_POST['gr1'];
 	$horario=$_POST['horario'];
 	$consultorio=$_POST['consultorio'];
 
 		if ($tipo==2){
 
 			$m = new medico();
-			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio,$s);
+			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio);
 			
 			header('Location:./menuPrincipalAdmin.php'); 
 			}
 
 		else{
 			$m=new usuario();
-			$m->DarDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo,$s);
+			$m->DarDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo);
 			}
 			header('Location:./menuPrincipalAdmin.php'); 
 

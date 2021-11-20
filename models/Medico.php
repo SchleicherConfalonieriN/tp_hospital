@@ -6,7 +6,7 @@
 
 class Medico extends Model {
 	
-	public function informacion($dni,$s){
+	public function informacion($dni){
 	
 	$s->dni_validacion($dni);
 	$this->db->query("SELECT * from medicos where dni='$dni'");
@@ -18,7 +18,7 @@ class Medico extends Model {
 		return $this->db->fetchAll();
 	}
 	
-	public function generarHorariosDeAtencion($dni,$s){
+	public function generarHorariosDeAtencion($dni){
 	
 		$s->dni_validacion($dni);
 		$this->db->query("SELECT horario FROM medicos where dni = " . $dni . " limit 1");
@@ -33,7 +33,7 @@ class Medico extends Model {
 		return $retorno;
 	}
 
-	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio,$s){
+	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio){
 		$s->dni_validacion($dni);
 		$s->nombre_validacion($nombre);
 		$s->apellido_validacion($apellido);
@@ -47,7 +47,7 @@ class Medico extends Model {
 		$this->db->query("INSERT INTO `medicos` (`dni`, `nom_medico`, `ape_medico`,`especialidad`,`consultorio`,`horario`) VALUES ('$dni', '$nombre', '$apellido', '$especialidad','$consultorio','$horario')");
 	}
 
-	public function eliminarMedico($dni,$s){
+	public function eliminarMedico($dni){
 		$s->dni_validacion($dni);
 		$this->db->query("delete from usuarios where dni='$dni'");
 		$this->db->query("delete from medicos where dni='$dni'");
@@ -55,7 +55,7 @@ class Medico extends Model {
 
 
 
-	public function cambiar_consultorio ($dni,$consultorio,$s){
+	public function cambiar_consultorio ($dni,$consultorio){
 		$s->dni_validacion($dni);
 		$s->consultorio_validacion($consultorio);
 	//	$s->dni_consultorio($identificador);
@@ -63,7 +63,7 @@ class Medico extends Model {
 	}
 
 
-	public function cambiar_horario ($dni,$turno,$s){
+	public function cambiar_horario ($dni,$turno){
 		$s->dni_validacion($dni);
 		$s->horario_validacion($turno);
 		//$s->dni_turno($identificador);		

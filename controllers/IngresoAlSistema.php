@@ -27,7 +27,7 @@ $u = new usuario();
 $datos=$u->datos($dni,$s);
 
 
-	if ($s->verify_contra($contra,$datos))
+	if (seguridad::verify_contra($contra,$datos))
 	{
 	
 		if ($datos['tipo']==0){

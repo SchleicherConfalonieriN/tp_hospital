@@ -1,9 +1,10 @@
 #pedir_turno{
-	border-color: black;
+	border-color: darkblue;
 	border-width: 2px;
 	border-style: solid;
 	padding: 9px;
 	margin-top: 40px;
+	background-color: whitesmoke;
 }
 
 

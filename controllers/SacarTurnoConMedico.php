@@ -51,9 +51,9 @@ if(isset($_POST['fecha'])){
 	
 	if ($fechavalida==true){
 	
-		$turnosPosibles=$m->generarHorariosDeAtencion($dni_medico,$s);
+		$turnosPosibles=$m->generarHorariosDeAtencion($dni_medico);
 		
-		$turnosAgendados=$t->getTurnosAgendados($dni_medico,$fecha,$s);
+		$turnosAgendados=$t->getTurnosAgendados($dni_medico,$fecha);
 		
 
 		foreach($turnosPosibles as $tp){
@@ -69,7 +69,7 @@ if(isset($_POST['fecha'])){
 		if(isset($_POST['hora'])){
 			//validar hora
 			$hora=$_POST['hora'];
-			$t->agendarTurno($dni_medico,$dni_usuario,$fecha,$hora,$s);
+			$t->agendarTurno($dni_medico,$dni_usuario,$fecha,$hora);
 			header('Location:./menuPrincipalPaciente.php');
 			exit();
 	}

@@ -26,7 +26,7 @@ $dni = $_SESSION['idUsuario'];
 $u = new usuario();
 
 
-$u->cambiar_contraseña($dni,$contra,$s);
+$u->cambiar_contraseña($dni,$contra);
 
 
  if($_SESSION['tipoUsuario']==0){

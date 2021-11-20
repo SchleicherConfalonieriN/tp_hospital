@@ -23,12 +23,12 @@ LISTADO DE TURNOS REGISTRADOS
 
     <?php foreach ($this->turnos as $t) {?>
     <tr>
-        <td><?php echo $t['turno_id'] ?></td>
-        <td><?php echo $t['dni_paciente'] ?></td>
-        <td><?php echo $t['servicio']?></td>
-        <td><?php echo $t['fecha']?></td>
-        <td><?php echo $t['hora']?></td>
-        <td><?php echo $t['consultorio']?></td>
+        <td><?php echo htmlentities($t['turno_id'] )?></td>
+        <td><?php echo htmlentities($t['dni_paciente']) ?></td>
+        <td><?php echo htmlentities($t['servicio'])?></td>
+        <td><?php echo htmlentities($t['fecha'])?></td>
+        <td><?php echo htmlentities($t['hora'])?></td>
+        <td><?php echo htmlentities($t['consultorio'])?></td>
     </tr>
     <?php } ?>
   </table>

@@ -52,7 +52,7 @@ if(!isset($_POST['mail'])){
 			$mensaje="Ya existe un usuario con ese número de DNI";
 		}
 		else{  //try
-			$u->DarDeAlta($dni, $nombre, $apellido, $contra, $mail,$tipo,$s);
+			$u->DarDeAlta($dni, $nombre, $apellido, $contra, $mail,$tipo);
 				header('Location:./IngresoAlSistema.php');
 				exit();
 		}

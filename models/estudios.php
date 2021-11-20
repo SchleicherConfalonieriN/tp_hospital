@@ -13,21 +13,21 @@ class estudios extends Model{
 			}
 
 			
-			public function DarDeAlta($nombre,$descripcion,$precio,$horario,$s){
+			public function DarDeAlta($nombre,$descripcion,$precio,$horario){
 
 		
-			$s->precio_validacion($precio);
-			$s->descripcion_validacion($descripcion);
-			$s->horario_validacion($horario);
-			$s->nombre_validacion($nombre);
+			seguridad::precio_validacion($precio);
+			seguridad::descripcion_validacion($descripcion);
+			seguridad::horario_validacion($horario);
+			seguridad::nombre_validacion($nombre);
 					$this->db->query("INSERT INTO estudios (estudio_id,nom_estudio, desc_estudio, precio, horario) VALUES ('$id','$nombre', '$descripcion', '$precio', '$horario')");
 			}
 
 
 
-			public function Eliminar($id,$s){
+			public function Eliminar($id){
 			
-			$s->idEstudio_validacion($id);
+			seguridad::idEstudio_validacion($id);
 
 				$this->db->query("delete from estudios where estudio_id='$id'");
 			}
@@ -43,7 +43,7 @@ class estudios extends Model{
 
 
 	
-	public function generarHorariosDeEstudios($identificador,$s){
+	public function generarHorariosDeEstudios($identificador){
 		//Tendriamos que ver cada cuanto queremos que se generen los turnos para estudios. Aca esta hecho cada 15 minutos a partir de las 8:00 am
 		$this->db->query("SELECT horario FROM estudios where estudio_id = " . $identificador . " limit 1");
 		$h=$this->db->fetch();

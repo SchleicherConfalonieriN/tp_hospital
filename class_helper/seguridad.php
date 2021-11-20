@@ -11,7 +11,7 @@ class seguridad{
 		if ($id<1 or $id>150)throw new ValidationException("Valor de Id invalido");
 
 	}
-	public function dni_validacion($dni){
+	public static function dni_validacion($dni){
 
 
 		if(!isset($dni))throw new ValidationException("DNI invalido");
@@ -20,50 +20,50 @@ class seguridad{
 
 		}
 
-	public function nombre_validacion($nombre){
+	public static function nombre_validacion($nombre){
 
 			if(!isset($nombre))throw new ValidationException("Nombre invalido", 1);
 			if(preg_match('/^[a-zA-Z]*$/', $nombre)!=1){throw new ValidationException("Nombre invalido", 1);}
 			if (strlen($nombre)<3 OR strlen($nombre)>15)throw new ValidationException("Nombre invalido", 1);
 		}
 
-	public function apellido_validacion($apellido){
+	public static function apellido_validacion($apellido){
 
 			if(!isset($apellido)){throw new ValidationException("Apellido invalido", 1);}
 			if(preg_match('/^[a-zA-Z]*$/', $apellido)!=1){throw new ValidationException("Apellido invalido", 1);}
 			if (strlen($apellido)<3 OR strlen($apellido)>15){throw new ValidationException("Apellido Invalido", 1);}
 			}
 
-	public function email_validacion($mail){
+	public static function email_validacion($mail){
 
 			if(!isset($mail)){throw new ValidationException("Email invalido");}
 			if (!filter_var($mail,FILTER_VALIDATE_EMAIL)){throw new ValidationException("Email invalido");}
 				}
-		public function tipo_validacion($tipo){
+		public static function tipo_validacion($tipo){
 		
 			if ($tipo!=0 && $tipo!=1 && $tipo!=2){throw new ValidationException("Tipo de usuario invalido");}
 			}
 
-		public function contra_validacion($contra){
+		public static function contra_validacion($contra){
 
 			if(!isset($contra)){throw new ValidationException("Contraseña Ivalida");}
 			if (!ctype_digit($contra)){throw new ValidationException("Contraseña Ivalida");
 				}
 			if ($contra<10000 or $contra>100000000000){throw new ValidationException("Contraseña Ivalida");}
 			}
-		public function especialidad_validacion($especialidad){
+		public static function especialidad_validacion($especialidad){
 
 			if(!isset($especialidad)){throw new ValidationException("Especialidad Invalida");}
 			if(!preg_match('/^[a-zA-z]*$/', $especialidad)==1){throw new ValidationException("Formato de Especialidad Invalido");}
 				}
 
-		public function hash_contra($contra){
+		public static function hash_contra($contra){
 
 			$hashcontra=password_hash($contra, PASSWORD_DEFAULT);
 			return $hashcontra;
 		}
 
-		public function verify_contra($contra,$datos){
+		public static function verify_contra($contra,$datos){
 
 			if (password_verify($contra, $datos['contrasenia'])){
 				return true;
@@ -73,14 +73,14 @@ class seguridad{
 		}
 
 
-			public function consultorio_validacion($consultorio){
+		public static function consultorio_validacion($consultorio){
 
 		if(!isset($consultorio))throw new ValidationException("Consultorio Ivalido");
 		if (!ctype_digit($consultorio)) {throw new ValidationException("Numero de Consultorio Invalido");}
 		if($consultorio<0 OR $consultorio>200){throw new ValidationException("Numero de Consultorio Invalido");}
 	 	} 
 
-			public function horario_validacion($horario){
+		public static function horario_validacion($horario){
 
 
 		if(!isset($horario))throw new ValidationException("Horario invalido");
@@ -89,7 +89,7 @@ class seguridad{
 	}
 
 
-		public function precio_validacion($precio){
+		public static function precio_validacion($precio){
 
 
 		if(!isset($precio)){throw new ValidationException("precio invalidp");}
@@ -97,18 +97,18 @@ class seguridad{
 		if (!ctype_digit($precio)){throw new ValidationException("Formato de precio invalido");}
 	}
 
-		public function descripcion_validacion($descripcion){
+		public static function descripcion_validacion($descripcion){
 
 	if(!isset($descripcion))throw new ValidationException("descripcion invalida ");
 		if(!preg_match('/^[a-zA-z\s\d]+$/', $descripcion)==1){throw new ValidationException("Formato de Descripcion Invalido");}
 	}
 
 
-	public function hora_validacion($hora){
+	public static function hora_validacion($hora){
 	if(!isset($hora))throw new ValidationException("Hora no valida");
 	if(!strtotime($hora))throw new ValidationException("hora no valida");
 	}
-	public function fecha_validacion($fecha){
+	public static function fecha_validacion($fecha){
 
 
 	if(!isset($fecha)){throw new ValidationException("fecha no valida");}
@@ -121,8 +121,8 @@ class seguridad{
 
 }//FINAL DE CLASE
 
-$s=new seguridad();
+
+
 
 class ValidationException extends exception{}
-
  ?>
