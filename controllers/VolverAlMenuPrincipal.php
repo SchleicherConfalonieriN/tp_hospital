@@ -1,5 +1,5 @@
 <?php
-
+//Esto lo unico que hace es volver al menu principal segun que tipo de usuario esta logueado
 session_start();
 if (!isset($_SESSION['tipoUsuario']))
 {

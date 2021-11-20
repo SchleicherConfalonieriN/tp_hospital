@@ -1,51 +1,8 @@
 <<?php 
-require '../class_helper/seguridad.php';
 require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Medico.php';
-
-
-if(!isset($_POST['agregar_dni'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-
-
-if(!isset($_POST['agregar_nombre'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-
-if(!isset($_POST['agregar_apellido'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-
-if(!isset($_POST['agregar_contra'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-
-if(!isset($_POST['agregar_mail'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-if(!isset($_POST['agregar_especialidad'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-if(!isset($_POST['tipo'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-if(!isset($_POST['horario'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
-if(!isset($_POST['consultorio'])){
-    header('Location:./IngresoAlSistema.php');
-    exit();
-}
+require '../class_helper/seguridad.php';
 
 
 	$dni=($_POST['agregar_dni']);
@@ -55,13 +12,15 @@ if(!isset($_POST['consultorio'])){
 	$mail=$_POST['agregar_mail'];
 	$especialidad=$_POST['agregar_especialidad'];
 	$tipo=$_POST['tipo'];
-	$horario=$_POST['horario'];
-	$consultorio=$_POST['consultorio'];
+
+
+$s=new seguridad();
+
 
 		if ($tipo==2){
 
 			$m = new medico();
-			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio,$s);
+			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$s);
 			
 			header('Location:./menuPrincipalAdmin.php'); 
 			}

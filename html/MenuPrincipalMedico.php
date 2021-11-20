@@ -1,91 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ingreso al sistema</title>
-  <link rel="stylesheet" type="text/css" href="../css/fondo.css">
-  <link rel="stylesheet" type="text/css" href="../css/medico.css">
+	<title>Menú Principal</title>
+	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
 </head>
 <body>
+<h1>Bienvenido <?= $this->usuario['nombre']?> <?= $this->usuario['apellido']?></h1>
+<h1>Su consultorio el dia de hoy es : <?=$this->consultorio ?></h1>
+<h1>dia <?= date("d-m-Y", strtotime($this->fecha))?></h1>
+<br/>
+<form id="formulario" method="get">
+<label for="fecha">Fecha:</label><br>
+<input type="date" id="fecha" name="fecha" required="required"></input><br>
+</form>
+	<table>
+	
+		<?php if ($this->verAgenda==true) echo '<tr><th>Hora</th><th>Paciente</th><th></th></tr>' ?>
+
+		<?php foreach($this->turnos as $t) { ?>
+		<tr><td><?= date("H:i", strtotime($t['hora']))?></td><td><?= $t['paciente'] ?></td>
+		<td><?php if($this->modificar==true) {
+			if ($t['libre']==false) echo "<a href='./ConfirmarAnulacionTurno.php?id=" . $t['id'] . "'" . ">Anular Turno</a>" ;
+			if ($t['libre']==true) echo "<a href=" . "'./AgendarTurnoMedico.php?hora=" . $t['hora'] . "&" . "dia=" . $this->fecha . "'" . ">Agendar Turno</a>"; 
+			}?></td>
+		<?php } ?>
+		
+		<?php if ($this->verAgenda==false) echo $this->mensaje; ?>
+
+	</table>
+<a href="./CerrarSesion.php"><button>Cerrar Sesión</button></a>
+<a href="./MenuPrincipalPaciente.php"><button>Ingresar como paciente</button></a>
+
+<script type="text/javascript">
+	document.getElementById("fecha").value="<?=$this->fecha ?>";
+	
+	document.getElementById("fecha").onchange=function(){
+		document.getElementById("formulario").submit();
+	}	
+</script>
+
 
 <div>
-
-<div id="APP">
-<h1>Bienvenido
-<?php foreach ($this->datos as $d)
- echo  $d['nom_medico']; ?>  
- <?php echo  $d['ape_medico']; ?></h1>
-<h3>Su consultorio asignado es el <?php echo  $d['consultorio'];?></h3>
-
-<div>
-  <table>
-    <tr>
-      <td>ID del Turno</td>
-      <td>dni del paciente</td>
-      <td>fecha de consulta</td>
-       <td>hora de consulta</td>
-      <td>consultorio</td>
-    </tr>
-  <h3>Turnos Reservados</h3>
-    <?php foreach ($this->turnos_reservados as $t) {?>
-    <tr>
-          <td><?php echo htmlentities($t['turno_id']) ?></td>
-          <td><?php echo htmlentities($t['dni_paciente']) ?></td>
-          <td><?php echo htmlentities($t['fecha']) ?></td>
-          <td><?php echo htmlentities($t['hora']) ?></td>
-          <td><?php echo htmlentities($t['consultorio']) ?></td>
-    </tr>
-    <?php } ?>
-  </table>
-</div>
-
-<div id="edit_medico">
-  <h4>Modificar Turno</h4>
-  <form name="modificar_turno"method="post" action="../controllers/cambiarturnofecha.php">
-    <div>
-    <label for="id">Id del Turno:</label><br>
-   <input type="number"  name="dni" required="required"><br>
-</div>
-
-  <div>
-    <label for="id">Fecha Nueva del Turno:</label><br>
-   <input type="date"  name="fecha" required="required"><br>
-</div>
-<div>
-   <label for="id">Hora Nueva del Turno:</label><br>
-   <input type="time"  name="hora" required="required"><br>
-</div>
-<input type="submit" value="Modificar Turno"></input>
-
-  </form>
-</div>
-
-
-
-
-
-<div id="elimianr_turno">
-  <h4>Eliminar Turno</h4>
-<form name= "eliminar_turno"method="post" action="../controllers/AnularTurnoAdmin.php">
- 
-
-   <label for="id">Id_Turno:</label><br>
-   <input type="number"  name="id" required="required"><br>
-<input type="submit" value="Eliminar Turno"></input>
-  </form>
-</div>
-
-
-
-
 <form name= "cambiar_contra"method="post" action="../controllers/cambiarcontraseña.php">
   <label for="contraseña">Contraseña:</label><br>
    <input type="number" id="dni" name="contraseña" required="required"><br>
 <input type="submit" value="Cambiar Contraseña"></input>
   </form>
-
-
-
-<a href="./CerrarSesion.php"><button>Cerrar Sesión</button></a>
 </div>
 
 </body>

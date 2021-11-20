@@ -1,25 +1,24 @@
 <?php 
 
 
-class seguridad{
-	
-	public function id_validacion($id){
+class seguridad{	
 
+	public function dni_validacion($dni){
+		if(!isset($dni))throw new ValidationException("DNI invalido");
+		if (!ctype_digit($dni)) throw new ValidationException("Dni invalido");
+		if ($dni<0 or $dni>100000000)throw new ValidationException("Valor de dni invalido");
+	}
+
+	public function nombre_validacion($nombre){
+		if (ctype_digit($nombre)) throw new ValidationException("Nombre o apellido invalido", 1);
+		if (strlen($nombre)<2) throw new ValidationException("Nombre o apellido invalido", 1);
+	}
+
+	public function id_validacion($id){
 		if(!isset($id))throw new ValidationException("Id  invalido");
 		if (!ctype_digit($id)) throw new ValidationException("Id invalido");
-
-		if ($id<1 or $id>150)throw new ValidationException("Valor de Id invalido");
-
 	}
-	public function dni_validacion($dni){
-
-
-		if(!isset($dni))throw new ValidationException("DNI invalido");
-		if (!ctype_digit($dni)) throw new ValidationException("DNI invalido");
-		if ($dni<1000 or $dni>100000000)throw new ValidationException("Valor de DNI invalido");
-
-		}
-
+/*Estas validaciones no me dejan poner acentos. No seria mejor que validen la longitud del texto nada mas
 	public function nombre_validacion($nombre){
 
 			if(!isset($nombre))throw new ValidationException("Nombre invalido", 1);
@@ -33,7 +32,7 @@ class seguridad{
 			if(preg_match('/^[a-zA-Z]*$/', $apellido)!=1){throw new ValidationException("Apellido invalido", 1);}
 			if (strlen($apellido)<3 OR strlen($apellido)>15){throw new ValidationException("Apellido Invalido", 1);}
 			}
-
+*/
 	public function email_validacion($mail){
 
 			if(!isset($mail)){throw new ValidationException("Email invalido");}
@@ -126,3 +125,4 @@ $s=new seguridad();
 class ValidationException extends exception{}
 
  ?>
+

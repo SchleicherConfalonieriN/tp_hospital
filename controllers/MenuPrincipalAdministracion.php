@@ -1,6 +1,6 @@
 <?php
 //controlador
-require '../class_helper/seguridad.php';
+
 require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Medico.php';

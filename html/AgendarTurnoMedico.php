@@ -12,7 +12,7 @@
 <h2>Agendar turno para el dia <?= date("d-m-Y", strtotime($this->dia)) ?> a las <?= $this->hora ?> horas</h2>
 <form id="formulario" method="post">
   <label for="busq">Nombre/Apellido:</label><br/>
-  <input type="text" id="busq" name="busq" /><br/>
+  <input type="text" id="busq" name="busq" minlength="2" /><br/>
 </form> 
 <form id="formularioDos" method="post">
   <input type="hidden" id="dni_paciente" name="dni_paciente"></input>
@@ -22,24 +22,28 @@
 
 <table id="tabla">
     <thead> 
-		<tr>
+		<tr><?php if (count($this->pacientes)>0) echo '
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>Dni</th>
-			<th></th>
+			<th></th>' ?>
 		</tr>
 	</thead>
 	<tbody id="bodytabla">
 	</tbody>
 </table>
-
+<?php if (count($this->pacientes)==0) echo  'No se obtuvieron resultados'?>
+<h3><?=$this->mensaje ?></h3>
 
 <br/>
 <a href="./VolverAlMenuPrincipal.php"><button>Volver</button></a>
 <script type="text/javascript">
 	
 	document.getElementById("btnBuscar").onclick=function(){
-		document.getElementById("formulario").submit();
+		if (document.getElementById("busq").checkValidity()==true){
+			document.getElementById("formulario").submit();
+		}
+		else alert("Debe ingresar por lo menos dos caracteres");
 	}	
 	
 	var datos= <?php echo json_encode($this->pacientes) ?>;

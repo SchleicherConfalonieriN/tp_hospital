@@ -1,10 +1,11 @@
 <?php
 
 //controlador
-require '../class_helper/seguridad.php';
+
 require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Medico.php';
+require '../models/Especialidad.php';
 require '../views/ListadoMedicos.php';
 require '../views/ListadoMedicosAdministracion.php';
 
@@ -18,11 +19,11 @@ if ($_SESSION['tipoUsuario']==0){
 	exit();
 }
 
-if ($_SESSION['tipoUsuario']==1){
+if (($_SESSION['tipoUsuario']==1)or($_SESSION['tipoUsuario']==2)){
 	if(isset($_GET['especialidad_id'])){
-		//validarrr
-		$especialidad=$_GET['especialidad_id'];
-		$lista=$m->getTodosPorEspecialidad($especialidad);	
+		$id=$_GET['especialidad_id'];
+		$e=new Especialidad();
+		if($e->existeEspecialidad($id)) $lista=$m->getTodosPorEspecialidad($id);//compruebo que exista la especialidad con consulta a la base			
 	}
 	$v=new ListadoMedicos();
 	$v->medicos=$lista;
@@ -30,4 +31,4 @@ if ($_SESSION['tipoUsuario']==1){
 	exit();
 }
 
-header('Location:./IngresoAlSistema.php');
+header('Location:./IngresoAlSistema.php');//si el tipo de ususario no es 0 ni 1 que vuelva al principio

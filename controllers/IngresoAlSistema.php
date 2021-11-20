@@ -7,48 +7,38 @@ require '../models/Usuario.php';
 require '../views/IngresoAlSistema.php';
 session_start();
 
-if (count($_POST)>0){
-if (!isset($_POST['dni'])){
-header('Location:./IngresoAlSistema.php');
-exit();
-}
-if (!isset($_POST['contra'])){
-header('Location:./IngresoAlSistema.php');
-exit();
-}
-
-
-$dni=$_POST['dni'];
-$contra=$_POST["contra"];
-
-
-$u = new usuario();
-
-$datos=$u->datos($dni,$s);
-
-
-	if ($s->verify_contra($contra,$datos))
-	{
-	
-		if ($datos['tipo']==0){
+$mensaje="";
+if(isset($_POST['dni'],$_POST["contra"])){
+	$dni=$_POST['dni'];
+	$contra=$_POST["contra"];
+	$u = new usuario();
+	if ($u->intentarLoguear($dni,$contra)){
+		$tipo=$u->tipoDeUsuario($dni);
+		if ($tipo==0){
 			$_SESSION['idUsuario']=$dni;
 			$_SESSION['tipoUsuario']=0;
-			header('Location:./MenuPrincipalAdmin.php');
+			header('Location:./MenuPrincipalAdministracion.php');
+			exit();
 		}
-		if ($datos['tipo']==1){
+		if ($tipo==1){
 			$_SESSION['idUsuario']=$dni;
 			$_SESSION['tipoUsuario']=1;
 			header('Location:./MenuPrincipalPaciente.php');
+			exit();
 		}
-		if ($datos['tipo']==2){
+		if ($tipo==2){
 			$_SESSION['idUsuario']=$dni;
 			$_SESSION['tipoUsuario']=2;
 			header('Location:./MenuPrincipalMedico.php');
+			exit();
 		}	
 	}
+	else {
+		$mensaje="Contraseña o DNI inválido";
+	}
 }
-
 $v = new IngresoAlSistema();
+$v->mensaje=$mensaje;
 $v->render();
 ?>
 

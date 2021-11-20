@@ -1,16 +1,15 @@
 <?php
 
 //controlador
-require '../class_helper/seguridad.php';
+
 require '../fw/fw.php';
 require './Sesion.php';
-require '../models/estudios.php';
+require '../models/Estudio.php';
 require '../views/ListadoEstudios.php';
 
-$e=new estudios();
+$e=new Estudio();
 $lista=$e->getTodos();
 
 $v=new ListadoEstudios();
 $v->estudios=$lista;
-
 $v->render();

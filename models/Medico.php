@@ -2,15 +2,16 @@
 
 //modelo
 
+require_once '../models/Usuario.php';
+require_once '../class_helper/seguridad.php';
 
-
-class Medico extends Model {
+class Medico extends Usuario {
 	
-	public function informacion($dni,$s){
-	
-	$s->dni_validacion($dni);
-	$this->db->query("SELECT * from medicos where dni='$dni'");
-	return $this->db->fetchAll();
+	public function getTodosPorEspecialidad($id){
+		$s=new seguridad();
+		$s->id_validacion($id);
+		$this->db->query("SELECT * FROM medicos LEFT JOIN especialidades ON medicos.especialidad=especialidades.especialidad_id where especialidad = " . $id);
+		return $this->db->fetchAll();
 	}
 	
 	public function getTodos(){
@@ -18,10 +19,26 @@ class Medico extends Model {
 		return $this->db->fetchAll();
 	}
 	
-	public function generarHorariosDeAtencion($dni,$s){
+	public function informacion($dni){//veer
+		$s=new seguridad();
+		$s->dni_validacion($dni);
+		$this->db->query("SELECT * from medicos where dni='$dni'");
+		return $this->db->fetchAll();
+	}
 	
+	public function existeMedico($dni){
+		$s=new seguridad();
+		$s->dni_validacion($dni);
+		$this->db->query("SELECT * FROM medicos WHERE dni = '$dni'");
+		if (($this->db->numRows()==1)) return true; //si lo encuentra entonces existe
+		return false;
+	}
+	
+	public function generarHorariosDeAtencion($dni){
+		$s=new seguridad();
 		$s->dni_validacion($dni);
 		$this->db->query("SELECT horario FROM medicos where dni = " . $dni . " limit 1");
+		if (($this->db->numRows()==0)) throw new ValidationException("Dni no corresponde a ningún medico");
 		$h=$this->db->fetch();
 		$hora="08:00";
 		if ($h['horario']=="t") $hora="13:00";
@@ -32,57 +49,52 @@ class Medico extends Model {
 		}
 		return $retorno;
 	}
-
-	public function registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$horario,$consultorio,$s){
-		$s->dni_validacion($dni);
-		$s->nombre_validacion($nombre);
-		$s->apellido_validacion($apellido);
-		$hashcontra=$s->hash_contra($contra);
-		$s->email_validacion($mail);
-		$s->especialidad_validacion($especialidad);
-		$s->tipo_validacion($tipo);
-
-		$this->db->query("INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`, `contrasenia`, `tipo`, `mail`) VALUES ('$dni', '$nombre', '$apellido', '$hashcontra', '$tipo', '$mail')");
-
-		$this->db->query("INSERT INTO `medicos` (`dni`, `nom_medico`, `ape_medico`,`especialidad`,`consultorio`,`horario`) VALUES ('$dni', '$nombre', '$apellido', '$especialidad','$consultorio','$horario')");
-	}
-
-	public function eliminarMedico($dni,$s){
-		$s->dni_validacion($dni);
-		$this->db->query("delete from usuarios where dni='$dni'");
-		$this->db->query("delete from medicos where dni='$dni'");
-	}
-
-
-
-	public function cambiar_consultorio ($dni,$consultorio,$s){
-		$s->dni_validacion($dni);
-		$s->consultorio_validacion($consultorio);
-	//	$s->dni_consultorio($identificador);
-		$this->db->query("UPDATE `medicos` SET consultorio = '$consultorio' where dni='$dni'");
-	}
-
-
-	public function cambiar_horario ($dni,$turno,$s){
-		$s->dni_validacion($dni);
-		$s->horario_validacion($turno);
-		//$s->dni_turno($identificador);		
-		$this->db->query("UPDATE `medicos` SET horario = '$turno' 
-		where dni='$dni'");
+	
+	public function verificarHora($dni_medico,$hora_a_verificar){
+		$s=new seguridad();
+		$s->dni_validacion($dni_medico);
+		$this->db->query("SELECT horario FROM medicos where dni = " . $dni_medico . " limit 1");
+		if (($this->db->numRows()==0)) throw new ValidationException("Dni no corresponde a ningún medico");
+		$h=$this->db->fetch();
+		$hora="08:00";
+		if ($h['horario']=="t") $hora="13:00";
+		for($i=0;$i<10;$i++){
+			if($hora==$hora_a_verificar) return true;
+			$hora=date("H:i",strtotime ($hora. '+30 minutes'));
+		}
+		return false;
 	}
 	
-	public function getTodosPorEspecialidad($id){
-		$s->id_validacion($id);
-		$this->db->query("SELECT * FROM medicos LEFT JOIN especialidades ON medicos.especialidad=especialidades.especialidad_id where especialidad = " . $id);
-		return $this->db->fetchAll();
+	public function darDeAltaMedico($dni,$nombre,$apellido,$especialidad,$horario,$consultorio){
+		$s=new seguridad();
+		$s->dni_validacion($dni);
+		$s->nombre_validacion($nombre);
+		$s->nombre_validacion($apellido);
+		$s->id_validacion($especialidad);
+		$s->id_validacion($consultorio);
+		if (($horario!='m') and ($horario!='t'))throw new ValidationException("Horario inválido");
+		$nombre=$this->db->escape($nombre);
+		$apellido=$this->db->escape($apellido);
+		$this->db->query("INSERT INTO medicos (dni, nom_medico, ape_medico, especialidad, horario, consultorio) VALUES ('$dni', '$nombre', '$apellido', '$especialidad', '$horario', '$consultorio')");
 	}
-
+	
+	public function cambiarConsultorio($dni,$consultorio){
+		$s=new seguridad();
+		$s->dni_validacion($dni);
+		$s->id_validacion($consultorio);
+		$this->db->query("UPDATE medicos SET consultorio = '$consultorio' where dni='$dni'");
+	}
+	
+	public function getConsultorio($dni){
+		$s=new seguridad();
+		$s->dni_validacion($dni);
+		$this->db->query("SELECT consultorio FROM medicos WHERE dni = '$dni' limit 1");
+		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido");
+		$t = $this->db->fetch();
+		return $t['consultorio'];
+	}
 
 
 }// fin de la clase
 
-
-//Exceptions
-
-?>
 

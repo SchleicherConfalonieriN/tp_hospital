@@ -1,22 +1,13 @@
 
 <?php
 
-require '../class_helper/seguridad.php';
+
 require '../fw/fw.php';
 require '../models/Usuario.php';
 require '../models/Turno.php';
 require './Sesion.php';
+require '../class_helper/seguridad.php';
 
-
-
-if (!isset($_POST['contraseña'])){
-header('Location:./IngresoAlSistema.php');
-exit();
-}
-if (!isset($_SESSION['idUsuario'])){
-header('Location:./IngresoAlSistema.php');
-exit();
-}
 
 
 $contra= $_POST['contraseña'];
@@ -24,6 +15,7 @@ $dni = $_SESSION['idUsuario'];
 
 
 $u = new usuario();
+$s = new seguridad();
 
 
 $u->cambiar_contraseña($dni,$contra,$s);

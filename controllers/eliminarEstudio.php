@@ -1,20 +1,19 @@
 <<?php 
-
-require '../class_helper/seguridad.php';
 require '../fw/fw.php';
 require './Sesion.php';
 require '../models/estudios.php';
+require '../class_helper/seguridad.php';
 
-if (!isset($_POST['Eli_estudio'])){
-header('Location:./IngresoAlSistema.php');
-exit();
-}
 
-$id=($_POST['Eli_estudio']);
+$nombre=($_POST['nombre']);
+
+
+
+$s = new seguridad();
 
 
 $e= new estudios();
-$e->eliminar($id,$s);
+$e->eliminar($nombre);
 header('Location:./menuPrincipalAdmin.php'); 
 
 

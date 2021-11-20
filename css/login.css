@@ -6,7 +6,7 @@ border-style: solid;
 padding: 8px;
 width: 20%;
 border-radius: 7px;
-background-color: whitesmoke;
+	background-color: whitesmoke;
 display:flex;
 justify-content: center;
 flex-direction: column;

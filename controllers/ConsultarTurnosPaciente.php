@@ -1,12 +1,13 @@
 <?php
 //controlador
-require '../class_helper/seguridad.php';
+
 require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Medico.php';
 require '../models/Estudio.php';
 require '../models/Turno.php';
 require '../views/ConsultarTurnosPaciente.php';
+require_once '../class_helper/seguridad.php';
 
 if ($_SESSION['tipoUsuario']!=0)
 {
@@ -18,25 +19,19 @@ if (!isset($_POST['dni_paciente'])){
 	exit();
 }
 
-
-
 $dni=$_POST['dni_paciente'];
 
 $e = new estudio();
 $u = new usuario();
 $m = new  medico();
-$datos=$u->datos($dni,$s);
+$datos=$u->getDatos($dni);
 
 $t = new Turno();
 $todosLosTurnos=$t->getTurnosPorUsuario($dni);
 $todosLosEstudios=$t->getEstudiosPorUsuario($dni);
 
 
-
-
 $v= new ConsultarTurnosPaciente();
-
-$v->info_medico = $m->informacion($dni,$s);
 $v->usuario=$datos;
 $v->turnos=$todosLosTurnos;
 $v->estudios=$todosLosEstudios;
