@@ -11,21 +11,24 @@ class Estudio extends Model{
 		return $this->db->fetchAll();
 	}
 	
-	public function getDatosEstudio($id){		
+	public function getDatosEstudio($id){
+		
 		seguridad::id_validacion($id);	
 		$this->db->query("SELECT * FROM estudios WHERE estudio_id = " . $id . " LIMIT 1");
 		if (($this->db->numRows()==0)) throw new ValidationException("Id invalido");
 		return $this->db->fetch();
 	}
 	
-	public function existeEstudio($id){		
+	public function existeEstudio($id){
+		
 		seguridad::id_validacion($id);	
 		$this->db->query("SELECT * FROM estudios WHERE estudio_id = '$id'");
 		if (($this->db->numRows()==1)) return true; //si lo encuentra entonces existe
 		return false;
 	}
 	
-	public function generarHorariosDeEstudios($id){		
+	public function generarHorariosDeEstudios($id){
+		
 		seguridad::id_validacion($id);
 		$this->db->query("SELECT horario FROM estudios where estudio_id = " . $id . " limit 1");
 		$h=$this->db->fetch();
@@ -39,7 +42,8 @@ class Estudio extends Model{
 		return $retorno;
 	}
 	
-	public function verificarHora($id,$hora_a_verificar){		
+	public function verificarHora($id,$hora_a_verificar){
+		
 		seguridad::id_validacion($id);
 		$this->db->query("SELECT horario FROM estudios where estudio_id = " . $id . " limit 1");
 		$h=$this->db->fetch();
@@ -52,7 +56,8 @@ class Estudio extends Model{
 		return false;
 	}
 	
-	public function DarDeAlta($nombre,$descripcion,$precio,$horario){		
+	public function DarDeAlta($nombre,$descripcion,$precio,$horario){
+		
 		seguridad::nombre_validacion($nombre);
 		if (strlen($descripcion)>100) throw new ValidationException("Descripcion inválida");
 		if (!is_numeric($precio))throw new ValidationException("Precio inválido");

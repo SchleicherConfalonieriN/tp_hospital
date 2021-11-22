@@ -15,7 +15,8 @@ class Usuario extends Model {
 		return false;
 	}
 	
-	public function tipoDeUsuario($dni){	
+	public function tipoDeUsuario($dni){
+	
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT tipo from usuarios where dni =" . $dni . " limit 1");
 		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido"); //si no lo encuentra que tire una excepcion
@@ -23,14 +24,16 @@ class Usuario extends Model {
 		return $t['tipo'];
 	}
 	
-	public function usuarioExistente($dni){		
+	public function usuarioExistente($dni){
+		
 		seguridad::dni_validacion($dni);//si llego hasta este punto y el dni no es valido que tire una excepcion
 		$this->db->query("SELECT * from usuarios where dni = " . $dni);
 		if (($this->db->numRows()!=0)) return true;
 		return false;
 	}
 	
-	public function darDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo){		
+	public function darDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo){
+		
 		seguridad::dni_validacion($dni);
 		//Estas validaciones no me dejan poner acentos. Nada mas deberian validar la longitud del string -mas de 1- de todas formas despues usamos el escape
 		seguridad::nombre_validacion($nombre);
@@ -44,14 +47,16 @@ class Usuario extends Model {
 		$this->db->query("INSERT INTO usuarios (dni, nombre, apellido, contrasenia, tipo, mail) VALUES ('$dni', '$nombre', '$apellido', '$hashcontra', $tipo , '$mail')");
 	}
 		
-	public function getDatos($dni){		
+	public function getDatos($dni){
+		
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido"); //si no lo encuentra que tire una excepcion
 		return $this->db->fetch();
 	}
 	
-	public function nombreYApellido($dni){		
+	public function nombreYApellido($dni){
+		
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		$datos= $this->db->fetch();
@@ -68,9 +73,11 @@ class Usuario extends Model {
 	}
 
 	public function cambiar_contraseña($dni,$contra,$s){
+
 		seguridad::dni_validacion($dni);
 		seguridad::contra_validacion($contra);
-		$hashcontra=seguridad::hash_contra($contra);	
+		$hashcontra=seguridad::hash_contra($contra);
+	
 		$this->db->query("UPDATE usuarios SET contrasenia  = '$hashcontra' where dni = $dni");
 	}
 }
