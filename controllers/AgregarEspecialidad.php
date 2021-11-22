@@ -4,7 +4,7 @@ require './Sesion.php';
 require '../models/Especialidad.php';
 
 $e=new Especialidad();
-$nombre= $_POST['nombre'];
+$nombre= $_POST['especialidad'];
 
 
 if(isset($nombre)){
