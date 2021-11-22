@@ -11,49 +11,42 @@ class seguridad{
 	public static function dni_validacion($dni){
 		if (!ctype_digit($dni)) throw new ValidationException("DNI invalido");
 		if ($dni<1000 or $dni>100000000){throw new ValidationException("Valor de DNI invalido");}
-		}
+	}
 
-	public static function nombre_validacion($nombre){
-			
-			if (strlen($nombre)<3 OR strlen($nombre)>15)throw new ValidationException("Nombre invalido", 1);
-		}
+	public static function nombre_validacion($nombre){			
+		if (strlen($nombre)<3 OR strlen($nombre)>15)throw new ValidationException("Nombre invalido", 1);
+	}
 
-	public static function apellido_validacion($apellido){
-			
-			if (strlen($apellido)<3 OR strlen($apellido)>15){throw new ValidationException("Apellido Invalido", 1);}
-			}
+	public static function apellido_validacion($apellido){			
+		if (strlen($apellido)<3 OR strlen($apellido)>15){throw new ValidationException("Apellido Invalido", 1);}
+	}
 
 	public static function email_validacion($mail){
-			if (!filter_var($mail,FILTER_VALIDATE_EMAIL)){throw new ValidationException("Email invalido");}
-				}
+		if (!filter_var($mail,FILTER_VALIDATE_EMAIL)){throw new ValidationException("Email invalido");}
+	}
 
 	public static function tipo_validacion($tipo){
-			if ($tipo!=0 && $tipo!=1 && $tipo!=2){throw new ValidationException("Tipo de usuario invalido");}
-			}
+		if ($tipo!=0 && $tipo!=1 && $tipo!=2){throw new ValidationException("Tipo de usuario invalido");}
+	}
 
 	public static function contra_validacion($contra){
-			if (!ctype_digit($contra)){throw new ValidationException("Contraseña Ivalida");
-				}
-		}
-	public static function especialidad_validacion($especialidad){
-
-	if (strlen($especialidad)<4 OR strlen($especialidad)>35)throw new ValidationException("Nombre invalido", 1);
+		if (!ctype_digit($contra)){throw new ValidationException("Contraseña Ivalida");	}
+	}
 	
-
+	public static function especialidad_validacion($especialidad){
+		if (strlen($especialidad)<4 OR strlen($especialidad)>35)throw new ValidationException("Nombre invalido", 1);
 	}
 
 	public static function hash_contra($contra){
-
-	$hashcontra=password_hash($contra, PASSWORD_DEFAULT);
-	return $hashcontra;
-		}
+		$hashcontra=password_hash($contra, PASSWORD_DEFAULT);
+		return $hashcontra;
+	}
 
 	public static function verify_contra($contra,$datos){
-
 		if (password_verify($contra, $datos['contrasenia'])){
-				return true;
-		}else{return false;}
-		}
+				return true;}
+		else{return false;}
+	}
 
 
 	public static function consultorio_validacion($consultorio){
