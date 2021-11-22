@@ -8,7 +8,7 @@ $consultorio= $_POST['consultorio'];
 
 
 if(isset($consultorio)){
-$c->darDeAlta($consultorio);
+	if(!($c->existeConsultorio($consultorio))) $c->darDeAlta($consultorio);	
 }
 header('Location:./AdministracionInstalaciones.php');
 
