@@ -13,9 +13,9 @@
 <h1>Bienvenido <?php  echo htmlentities($this->usuario['nombre']); echo htmlentities(" ");echo htmlentities($this->usuario['apellido']);?></h1>
 <br/>
 
-<h2>Turno medicos reservado</h2>
+<h2>Turnos medicos reservados</h2>
 	<table>
-		<tr><th>Fecha</th><th>Hora</th><th>Profesional</th><th>Consultorio</th><th></th></tr>
+		<?php if(count($this->turnos)>0) echo '<tr><th>Fecha</th><th>Hora</th><th>Profesional</th><th>Consultorio</th><th></th></tr>' ?>
 		<?php foreach($this->turnos as $t) { ?>
 		<tr><td><?= date("d-m-Y", strtotime($t['fecha']))?></td> <td><?= date("H:i", strtotime($t['hora']))?></td><td><?= $t['nombre'] ?> <?= $t['apellido'] ?></td><td><?= $t['consultorio'] ?></td><td><a href="./ConfirmarAnulacionTurno.php?id=<?= $t['turno_id'] ?>">Anular Turno</a></td></tr>
 		<?php } ?>
@@ -24,16 +24,15 @@
 	<a href="./ListadoMedicos.php"><button>Pedir turno</button></a>
 	<a href="./ListadoEspecialidades.php"><button>Pedir turno por especialidad</button></a>
 </div>
-<h2>Turno de estudios medicos reservados</h2>
+<h2>Turnos de estudios medicos reservados</h2>
 <br/>
 	<table>
-		<tr><th>Fecha</th><th>Hora</th><th>Estudio</th><th>Consultorio</th><th></th></tr>
+		<?php if(count($this->estudios)>0) echo '<tr><th>Fecha</th><th>Hora</th><th>Estudio</th><th></th></tr>' ?>
 		<?php foreach($this->estudios as $e) { ?>
 		<tr>
 		<td><?php echo htmlentities(date("d-m-Y", strtotime($e['fecha'])))?></td> 
 		<td><?php echo htmlentities(date("H:i", strtotime($e['hora'])))?></td>
 		<td><?php echo htmlentities($e['nom_estudio']) ?></td>
-		<td><?php echo htmlentities($e['consultorio'] )?></td>
 		<td><a href="./ConfirmarAnulacionEstudio.php?id=<?php echo htmlentities($e['turno_id']) ?>">Anular Turno</a></td>
 		</tr>
 		<?php } ?>

@@ -25,7 +25,7 @@
 	<?= htmlentities($m['nom_medico'])?> 
 	<?= htmlentities($m['ape_medico']) ?></td> 
 
-	<td><?= htmlentities($m['especialidad']) ?></td> 
+	<td><?= htmlentities($m['nom_especialidad']) ?></td> 
 	<td><?php if($m['horario']=='t') 
 	{echo htmlentities(("Tarde"));} 
 	else {echo htmlentities(('Mañana'));} ?>
