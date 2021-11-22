@@ -22,7 +22,7 @@
 
 
 <br/>
-<a href="./MenuPrincipalUsuario.php"><button>Volver</button></a>
+<a href="./MenuPrincipalPaciente.php"><button>Volver</button></a>
 <script type="text/javascript">
 	document.getElementById("fecha").value="<?=$this->dia ?>";
 	

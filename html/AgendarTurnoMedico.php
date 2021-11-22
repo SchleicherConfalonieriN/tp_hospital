@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
 </head>
 <body>
-<h2>Agendar turno para el dia <?= date("d-m-Y", strtotime($this->dia)) ?> a las <?= $this->hora ?> horas</h2>
+<h2>Agendar turno para el dia <?=htmlentities( date("d-m-Y", strtotime($this->dia))) ?> a las <?= htmlentities($this->hora) ?> horas</h2>
 <form id="formulario" method="post">
   <label for="busq">Nombre/Apellido:</label><br/>
   <input type="text" id="busq" name="busq" minlength="2" /><br/>
@@ -32,14 +32,14 @@
 	<tbody id="bodytabla">
 	</tbody>
 </table>
-<?php if (count($this->pacientes)==0) echo  'No se obtuvieron resultados'?>
+<?php if (count($this->pacientes)==0) echo  htmlentities('No se obtuvieron resultados')?>
 <h3><?=$this->mensaje ?></h3>
 
 <br/>
 <a href="./VolverAlMenuPrincipal.php"><button>Volver</button></a>
 <script type="text/javascript">
 	
-	document.getElementById("btnBuscar").onclick=function(){
+		document.getElementById("btnBuscar").onclick=function(){
 		if (document.getElementById("busq").checkValidity()==true){
 			document.getElementById("formulario").submit();
 		}

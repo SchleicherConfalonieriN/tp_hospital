@@ -27,9 +27,9 @@ if(isset($_POST['nombre'])){
 	if (!isset($_POST['horario'])) die ('Error al validar el horario');
 	if (($_POST['horario']!='m') and ($_POST['horario']!='t')) die ('Error al validar el horario');
 	$horario=$_POST['horario'];
-	//try
+
 	$e->DarDeAlta($nombre,$descripcion,$precio,$horario);
-	//catch
+
 }
 
 $lista=$e->getTodos();
