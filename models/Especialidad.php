@@ -26,7 +26,6 @@ class Especialidad extends Model {
 	public function darDeAlta($nombre){
 	seguridad::nombre_validacion($nombre);
 	$this->db->query("INSERT INTO  especialidades (nom_especialidad) VALUES ('$nombre')");
-		}
-	
+		}	
 }
 
