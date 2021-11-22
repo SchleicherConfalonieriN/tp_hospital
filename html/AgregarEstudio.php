@@ -15,11 +15,11 @@
 <div class="registro">
 <form id="formulario" method="post">
 	<label for="nombre">Nombre:</label><br>
-	<input type="text" id="nombre" name="nombre" required="required"><br>
+	<input type="text" id="nombre" name="nombre" minlength="3" maxlength="15"  required="required"><br>
 	<label for="descripcion">Descripción:</label><br>
-	<input type="text" id="descripcion" name="descripcion" required="required"><br>
+	<input type="text" id="descripcion" name="descripcion" minlength="3" maxlength="100"  required="required"><br>
 	<label for="precio">Precio:</label><br>
-	<input type="number" id="precio" name="precio" required="required"><br><br>
+	<input type="number" id="precio" name="precio" min="1" required="required"><br><br>
 	<label for="horario">Horario:</label><br>
 	<select name="horario" id="horario" required="required">
 		<option value="m">Mañana</option>
