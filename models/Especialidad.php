@@ -17,6 +17,16 @@ class Especialidad extends Model {
 		if (($this->db->numRows()==1)) return true; //si encuentra la especialidad entonces existe
 		return false;
 	}
+	public function eliminarEspecialidad($id){
+	 seguridad::id_validacion($id);
+	$this->db->query("delete from especialidades where especialidad_id='$id'");
+		
+	}
+
+	public function darDeAlta($nombre){
+	seguridad::nombre_validacion($nombre);
+	$this->db->query("INSERT INTO  especialidades (nom_especialidad) VALUES ('$nombre')");
+		}
 	
 }
 

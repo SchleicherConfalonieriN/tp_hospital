@@ -26,6 +26,13 @@ class Consultorio extends Model {
 		return true;
 	}
 
-	
+		public function eliminarConsultorio($id){
+	 seguridad::id_validacion($id);
+	$this->db->query("delete from consultorios where consultorio_id='$id'");
+	}	
+	public function darDeAlta($consultorio){
+		seguridad::consultorio_validacion($consultorio);
+		$this->db->query("INSERT INTO consultorios (numero) VALUES ('$consultorio')");
+	}	
 }
 
