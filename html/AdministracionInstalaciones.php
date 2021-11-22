@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
 <body>
+	<div id="app_l">
 <div class="pos">
 <div class="pos1">
 	<h2>Registrar Consultorio</h2>
@@ -52,8 +53,14 @@
 	<?php } ?>
 </table>
 </div>
+
+	
+
 </div>
-
-
+</div>
+<div>
+	<br/>
+<a href="./MenuPrincipalAdministracion.php"><button>Volver</button></a>
+</div>
 </body>
 </html>

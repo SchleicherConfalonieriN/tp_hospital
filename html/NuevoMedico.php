@@ -14,11 +14,11 @@
 <div>
 <form id="formulario" method="post">
 	<label for="dni">DNI:</label><br>
-	<input type="number" id="dni" name="dni" min="1000" max="100000000000" required="required"><br>
+	<input type="number" id="dni" name="dni" required="required"><br>
 	<label for="nombre">Nombre:</label><br>
-	<input type="text" id="nombre" name="nombre" minlength="3" maxlength="15" required="required"><br>
+	<input type="text" id="nombre" name="nombre" required="required"><br>
 	<label for="apellido">Apellido:</label><br>
-	<input type="text" id="apellido" name="apellido" minlength="3" maxlength="15" required="required"><br>
+	<input type="text" id="apellido" name="apellido" required="required"><br>
 	<label for="contra">Contraseña:</label><br>
 	<input type="password" id="contra" name="contra" required="required"><br><br>
 	<label for="mail">Correo electrónico:</label><br>
