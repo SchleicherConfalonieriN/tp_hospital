@@ -18,8 +18,8 @@ class Especialidad extends Model {
 	}
 	
 	public function eliminarEspecialidad($id){
-	seguridad::id_validacion($id);
-	$this->db->query("delete from especialidades where especialidad_id='$id'");		
+		seguridad::id_validacion($id);
+		$this->db->query("delete from especialidades where especialidad_id='$id'");		
 	}
 
 	public function darDeAlta($nombre){
