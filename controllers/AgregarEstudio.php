@@ -6,7 +6,7 @@ require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Estudio.php';
 require '../views/AgregarEstudio.php';
-require_once '../class_helper/seguridad.php';
+
 
 if ($_SESSION['tipoUsuario']!=0)
 {
