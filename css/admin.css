@@ -1,0 +1,70 @@
+h1 {
+			text-align:center;
+			font-size:30px;
+			color:darkblue;			
+		}
+		h2 {
+			text-align:center;
+			font-size:25px;
+			color:black;
+
+		}
+		table{
+			margin-left: auto;
+			margin-right: auto;
+			border-collapse: collapse;
+			border:solid;
+		}
+		th{
+			text-align:center;
+			background-color:orange;
+			height:30px;
+			width:12vw;
+			border-color:red;
+			border-left-style:solid;
+			border-right-style:solid;
+		}			
+		td{
+			text-align:center;
+			width:12vw;
+			height:20px;
+		}
+		div{
+			width:50%;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+			align-items:center;
+		}
+		.registro{
+			width: 25%;
+			border-style: solid;
+			border-width: 3px;
+			align-content: center;
+		}
+		#cambiarh{
+			width: 30%;
+			border-style: solid;
+			border-width: 3px;
+			border-color: black;	
+			margin-bottom: 8px;
+			margin-top: 8px;
+			padding: 2px;
+			background-color: whitesmoke;
+		}
+
+
+
+		.btn{
+			font-size: 30px;
+			width: 600px;
+			border-color: black;
+			border-style: solid;
+			background-color: whitesmoke;
+			padding: 4px;
+		}
+
+		.btndiv{
+			margin-right: 48%;
+			margin-bottom: 4%;rg
+		}
