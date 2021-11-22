@@ -24,14 +24,31 @@ class Turno extends Model {
 	}
 	
 	public function esTurnoLibre($dni_medico,$fecha,$hora){
+			seguridad::dni_validacion($dni_medico);
+			seguridad::fecha_validacion($fecha);
+			seguridad::hora_validacion($hora);
 		$this->db->query("SELECT * from turnos where servicio = '$dni' AND fecha = '$fecha' AND hora = '$hora' LIMIT 1");
 		if (($this->db->numRows()==0)) return true;
 		return false;
 	}
+
+		public function esTurnoLibreEstudio($id,$fecha,$hora){
+			seguridad::id_validacion($id);
+			seguridad::fecha_validacion($fecha);
+			seguridad::hora_validacion($hora);
+		$this->db->query("SELECT * from turnos where servicio = '$dni' AND fecha = '$fecha' AND hora = '$hora' LIMIT 1");
+		if (($this->db->numRows()==0)) return true;
+		return false;
+	}
+
+
+
 	
 	public function agendarTurno($dni_medico,$dni_usuario,$fecha,$hora){		
 		seguridad::dni_validacion($dni_medico);
 		seguridad::dni_validacion($dni_usuario);
+		seguridad::fecha_validacion($fecha);
+		seguridad::hora_validacion($hora);
 		$fecha=date("Y-m-d", strtotime($fecha));
 		$hora=date("H:i",strtotime($hora));
 		$this->db->query("INSERT INTO turnos (servicio, dni_paciente, fecha, hora) values ( '$dni_medico' , '$dni_usuario' , '$fecha' , '$hora' )");
@@ -41,6 +58,8 @@ class Turno extends Model {
 	public function agendarTurnoEstudio($id_estudio,$dni_usuario,$fecha,$hora){		
 		seguridad::id_validacion($id_estudio);
 		seguridad::dni_validacion($dni_usuario);
+		seguridad::fecha_validacion($fecha);
+		seguridad::hora_validacion($hora);
 		$fecha=date("Y-m-d", strtotime($fecha));
 		$hora=date("H:i",strtotime($hora));
 		$this->db->query("INSERT INTO turnos (servicio, dni_paciente, fecha, hora) values ( '$id_estudio' , '$dni_usuario' , '$fecha' , '$hora' )");
@@ -49,7 +68,7 @@ class Turno extends Model {
 	public function existeTurno($id){		
 		seguridad::id_validacion($id);
 		$this->db->query("SELECT * FROM turnos WHERE turno_id = '$id'");
-		if (($this->db->numRows()==1)) return true; //si lo encuentra entonces existe
+		if (($this->db->numRows()==1)) return true; 
 		return false;
 	}
 	
@@ -78,6 +97,8 @@ class Turno extends Model {
 	
 	public function getTodosPorMedicoYFecha($dni,$fecha){		
 		seguridad::dni_validacion($dni);
+		seguridad::fecha_validacion($fecha);
+
 		$fecha=date("Y-m-d",strtotime($fecha));
 		$this->db->query("SELECT turno_id, dni_paciente, servicio, fecha, hora, consultorio, usuarios.nombre, usuarios.apellido 
 		from turnos left join usuarios on usuarios.dni=turnos.dni_paciente 
@@ -87,6 +108,8 @@ class Turno extends Model {
 	
 	public function getTodosPorEstudioYFecha($id,$fecha){		
 		seguridad::id_validacion($id);
+		seguridad::fecha_validacion($fecha);
+
 		$fecha=date("Y-m-d",strtotime($fecha));
 		$this->db->query("SELECT turno_id, dni_paciente, servicio, fecha, hora, consultorio, usuarios.nombre, usuarios.apellido 
 		from turnos left join usuarios on usuarios.dni=turnos.dni_paciente 

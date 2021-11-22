@@ -18,7 +18,7 @@ class Medico extends Usuario {
 		return $this->db->fetchAll();
 	}
 	
-	public function informacion($dni){//veer		
+	public function informacion($dni){		
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from medicos where dni='$dni'");
 		return $this->db->fetchAll();
@@ -27,7 +27,7 @@ class Medico extends Usuario {
 	public function existeMedico($dni){		
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * FROM medicos WHERE dni = '$dni'");
-		if (($this->db->numRows()==1)) return true; //si lo encuentra entonces existe
+		if (($this->db->numRows()==1)) return true;
 		return false;
 	}
 	

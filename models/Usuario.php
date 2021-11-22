@@ -6,25 +6,28 @@ require_once '../class_helper/seguridad.php';
 class Usuario extends Model {
 	
 	public function intentarLoguear($dni,$contrasenia){
-		if (!ctype_digit($dni)) return false; //no deberia tirar una excepcion. Si puso el dni mal no va a poder entrar al sistema pero puede seguir intentando
+
+		seguridad::dni_validacion($dni);
+		
+
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " limit 1");
 		if (($this->db->numRows()!=1)) return false;
 		$c = $this->db->fetch();
-		$hashcontra=password_hash($contrasenia, PASSWORD_DEFAULT);
-		if (password_verify($contrasenia, $c['contrasenia'])) return true;
+		$hashcontra=seguridad::hash_contra($contrasenia);
+		if (password_verify($contrasenia, $c['contrasenia'])) {return true;}
 		return false;
 	}
 	
 	public function tipoDeUsuario($dni){	
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT tipo from usuarios where dni =" . $dni . " limit 1");
-		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido"); //si no lo encuentra que tire una excepcion
+		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido");
 		$t = $this->db->fetch();
 		return $t['tipo'];
 	}
 	
 	public function usuarioExistente($dni){		
-		seguridad::dni_validacion($dni);//si llego hasta este punto y el dni no es valido que tire una excepcion
+		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from usuarios where dni = " . $dni);
 		if (($this->db->numRows()!=0)) return true;
 		return false;
@@ -32,7 +35,6 @@ class Usuario extends Model {
 	
 	public function darDeAlta($dni,$nombre,$apellido,$contra,$mail,$tipo){		
 		seguridad::dni_validacion($dni);
-		//Estas validaciones no me dejan poner acentos. Nada mas deberian validar la longitud del string -mas de 1- de todas formas despues usamos el escape
 		seguridad::nombre_validacion($nombre);
 		seguridad::nombre_validacion($apellido);
 		seguridad::email_validacion($mail);
@@ -47,7 +49,7 @@ class Usuario extends Model {
 	public function getDatos($dni){		
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
-		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido"); //si no lo encuentra que tire una excepcion
+		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido"); 
 		return $this->db->fetch();
 	}
 	
@@ -55,7 +57,7 @@ class Usuario extends Model {
 		seguridad::dni_validacion($dni);
 		$this->db->query("SELECT * from usuarios where dni = " . $dni . " LIMIT 1");
 		$datos= $this->db->fetch();
-		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido"); //si no lo encuentra que tire una excepcion
+		if (($this->db->numRows()==0)) throw new ValidationException("Dni invalido"); 
 		$string= $datos['nombre'] ." ". $datos['apellido'];
 		return $string;
 	}
@@ -67,7 +69,7 @@ class Usuario extends Model {
 		return $this->db->fetchAll();
 	}
 
-	public function cambiar_contraseña($dni,$contra,$s){
+	public function cambiar_contraseña($dni,$contra){
 		seguridad::dni_validacion($dni);
 		seguridad::contra_validacion($contra);
 		$hashcontra=seguridad::hash_contra($contra);	
