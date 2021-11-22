@@ -25,7 +25,7 @@
 	
 	<table>
 	
-<tr><th>Hora</th><th>Paciente</th><th>Opciones</th></tr>
+<?php if ($this->verAgenda==true) echo '<tr><th>Hora</th><th>Paciente</th><th></th>Opciones</tr>' ?>
 
 		<?php foreach($this->turnos as $t) { ?>
 		<tr><td>
