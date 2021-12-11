@@ -9,13 +9,16 @@ require '../models/Turno.php';
 require '../views/SacarTurnoEstudio.php';
 
 if(!isset($_GET['id'])){
-	header('Location:./IngresoAlSistema.php'); 
+	header('Location:./IngresoAlSistema.php'); //si no tiene el valor de id que vuelva
 	exit();
 }
-
+if(!ctype_digit($_GET['id'])){
+	header('Location:./IngresoAlSistema.php'); // si el id no es un numero que vuelva
+	exit();
+}
 $e=new Estudio();
 if(!($e->existeEstudio($_GET['id']))){
-	header('Location:./IngresoAlSistema.php'); 
+	header('Location:./IngresoAlSistema.php'); // si el id no corresponde a un estudio que vuelva
 	exit();
 }
 
@@ -37,7 +40,7 @@ if(isset($_POST['fecha'])){
 	if($fecha<=$hoy) {
 		$fechavalida=false;
 		$mensaje="No se puede sacar turno para una fecha anterior al dia de hoy";
-	} 
+	} //no se puede sacar turno para un dia que ya pasó
 	
 	$enDosSemanas=date("Y-m-d", strtotime($hoy.'+ 15 days')); 
 	if($fecha>$enDosSemanas) {
@@ -68,7 +71,7 @@ if(isset($_POST['fecha'])){
 		if(isset($_POST['hora'])){			
 			$hora=$_POST['hora'];
 			if ($e->verificarHora($id_estudio,$hora)){
-				if ($t->esTurnoLibreEstudio($id_estudio,$fecha,$hora)) $t->agendarTurnoEstudio($id_estudio,$dni_usuario,$fecha,$hora);			
+				if ($t->esTurnoLibre($id_estudio,$fecha,$hora)) $t->agendarTurnoEstudio($id_estudio,$dni_usuario,$fecha,$hora);			
 				header('Location:./menuPrincipalPaciente.php');
 				exit();
 			}

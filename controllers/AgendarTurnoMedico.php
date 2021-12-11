@@ -49,7 +49,7 @@ if ($_SESSION['tipoUsuario']==0){
 		exit();
 	}
 }
-
+//verifico que la fecha sea valida. Sino vuelvo al menu principal
 $fecha=date("Y-m-d", strtotime($_GET['dia']));
 $hoy=date("Y-m-d");
 if($fecha<$hoy) {
@@ -65,13 +65,15 @@ $diaDeLaSemana=date('N',strtotime($fecha));
 if($diaDeLaSemana>5) {
 	header('Location:./VolverAlMenuPrincipal.php');
 	exit();
-
+} 
+//verifico que la hora sea valida. Sino vuelvo al menu principal
 $hora=date("H:i", strtotime($_GET['hora']));
 if (!($m->verificarHora($dni_medico,$hora))){
 	header('Location:./VolverAlMenuPrincipal.php');
 	exit();
 }
 
+//try
 if (isset($_POST['dni_paciente'])){
 	$dni_paciente=$_POST['dni_paciente'];
 	if($u->usuarioExistente($dni_paciente)){
@@ -91,7 +93,7 @@ if (isset($_POST['dni_paciente'])){
 		}
 	}
 }
-
+//catch
 
 $posiblesPacientes=[];
 if (isset($_POST['busq'])){

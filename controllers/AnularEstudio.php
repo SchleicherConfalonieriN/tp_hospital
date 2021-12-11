@@ -19,6 +19,10 @@ if(!isset($_GET['id'])) {
 	exit();
 }
 
+if(!ctype_digit($_GET['id'])) {
+	header('Location:./menuPrincipalPaciente.php');
+	exit();
+}
 
 $id_turno=($_GET['id']);
 $t=new Turno();
