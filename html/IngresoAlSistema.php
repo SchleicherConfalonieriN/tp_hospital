@@ -18,6 +18,7 @@
 			</form> 
 		<br/>
 		</div>
+		
 		<div id="Ingresar">
 			<input type="submit" value="Ingresar">
 		</div>

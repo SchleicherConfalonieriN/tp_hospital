@@ -9,21 +9,34 @@
 <head>
 	<title>Nuestros Profesionales</title>
 	<link rel="stylesheet" type="text/css" href="../css/fondo.css">
+	<link rel="stylesheet" type="text/css" href="../css/admin.css">
 </head>
 <body>
 
 	<h1>Nuestros Profesionales</h1>
 
-
 	<table>
-		<tr><th>Nombre</th><th>Especialidad</th><th>Horario</th><th>Consultorio</th><th></th><th></th></tr>
-
+		<tr><th>Nombre</th><th>Especialidad</th><th>Horario</th><th>Consultorio</th><th></th><th> </th><th></th></tr>
 		<?php foreach($this->medicos as $m) { ?>
-		<tr><td><?= $m['nom_medico'] ?> <?= $m['ape_medico'] ?></td> <td><?= $m['nom_especialidad'] ?></td> <td><?php if($m['horario']=='t')  htmlentities("Tarde"); else  htmlentities('Mañana'); ?></td> <td><?= $m['consultorio'] ?></td><td><a href="ConsultarAgendaMedico.php?id=<?= $m['dni'] ?>">Consultar Agenda</a></td><td><a href="CambiarConsultorio.php?id=<?= $m['dni'] ?>">Cambiar consultorio</a></td></tr>
+			<tr>
+				<td><?= htmlentities($m['nom_medico'])?> <?= htmlentities($m['ape_medico']) ?></td> 
+				<td><?= htmlentities($m['nom_especialidad']) ?></td> 
+				<td><?php if($m['horario']=='t') 
+				{echo "Tarde";} 
+				else {echo "Mañana";} ?>
+				</td> 
+				<td><?= $m['consultorio']?></td>	
+				<td><a href="ConsultarAgendaMedico.php?id=<?=$m['dni'] ?>">Consultar Agenda</a></td>	
+				<td><a href="CambiarConsultorio.php?id=<?=$m['dni'] ?>">Cambiar consultorio</a></td>
+				<td><a href="eliminar.php?dni=<?=$m['dni']?>">Eliminar Medico</a></td>
+			</tr>
 		<?php } ?>
-
 	</table>
-	<a href="./MenuPrincipalAdministracion.php"><button>Volver</button></a>
+	
+	<br>
+	<div>
+		<a href="./MenuPrincipalAdministracion.php"><button>Volver</button></a>
+	</div>
 </body>
 </html>
 

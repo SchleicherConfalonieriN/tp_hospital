@@ -41,7 +41,6 @@ class Estudio extends Model{
 	
 	public function verificarHora($id,$hora_a_verificar){		
 		seguridad::id_validacion($id);
-		seguridad::hora_validacion($hora_a_verificar);
 		$this->db->query("SELECT horario FROM estudios where estudio_id = " . $id . " limit 1");
 		$h=$this->db->fetch();
 		$hora="08:00";
@@ -55,10 +54,9 @@ class Estudio extends Model{
 	
 	public function DarDeAlta($nombre,$descripcion,$precio,$horario){		
 		seguridad::nombre_validacion($nombre);
-		seguridad::descripcion_validacion($descripcion);
-		seguridad::precio_validacion($precio);
-		seguridad::horario_validacion($horario);
-		seguridad::tipo_validacion($tipo);
+		if (strlen($descripcion)>100) throw new ValidationException("Descripcion inválida");
+		if (!is_numeric($precio))throw new ValidationException("Precio inválido");
+		if (($horario!='m') and ($horario!='t'))throw new ValidationException("Horario inválido");
 		$this->db->query("INSERT INTO estudios (nom_estudio, desc_estudio, precio, horario) VALUES ('$nombre', '$descripcion', '$precio', '$horario')");
 	}
 
