@@ -67,11 +67,16 @@ class Usuario extends Model {
 		return $this->db->fetchAll();
 	}
 
-	public function cambiar_contraseña($dni,$contra,$s){
+	public function cambiarContrasenia($dni,$contra){
 		seguridad::dni_validacion($dni);
-		seguridad::contra_validacion($contra);
+		//seguridad::contra_validacion($contra);
 		$hashcontra=seguridad::hash_contra($contra);	
 		$this->db->query("UPDATE usuarios SET contrasenia  = '$hashcontra' where dni = $dni");
+	}
+	
+	public function mailInvalido($mail){
+		if (!filter_var($mail,FILTER_VALIDATE_EMAIL)) return true;
+		return false;
 	}
 }
 
