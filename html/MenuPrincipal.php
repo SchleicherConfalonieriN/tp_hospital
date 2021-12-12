@@ -51,10 +51,9 @@
 	<div>
 		<form name= "cambiar_contra"method="post" action="../controllers/cambiarcontraseña.php">
 			<label for="contraseña">Contraseña:</label><br>
-			<input type="number" id="dni" name="contraseña" required="required"><br>
+			<input type="text" id="contra"  minlength="6" name="contra" required="required"><br>
 			<input type="submit" value="Cambiar Contraseña"></input><br>
 		</form>
-
 	</div>
 
 </body>
