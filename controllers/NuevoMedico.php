@@ -58,10 +58,15 @@ if(isset($_POST['dni'])){
 		die('Error al validar el consultorio');
 	}
 	if (!($m->existeMedico($dni))){
-		if (!($m->usuarioExistente($dni))) $m->darDeAlta($dni, $nombre, $apellido, $contra, $mail, 2); //Si el medico ya existe como usuario no lo sobreescribo
-		$m->darDeAltaMedico($dni, $nombre, $apellido, $especialidad, $horario, $consultorio);
-		header('Location:./MenuPrincipalAdministracion.php');
-		exit();
+		if ($m->mailInvalido($mail)){
+			$mensaje="Dirección de correo electrónico inválida";
+		}
+		else{
+			if (!($m->usuarioExistente($dni))) $m->darDeAlta($dni, $nombre, $apellido, $contra, $mail, 2); //Si el medico ya existe como usuario no lo sobreescribo
+			$m->darDeAltaMedico($dni, $nombre, $apellido, $especialidad, $horario, $consultorio);
+			header('Location:./MenuPrincipalAdministracion.php');
+			exit();
+		}
 	}
 	else{
 		$mensaje="Ya existe un médico con ese número de DNI";

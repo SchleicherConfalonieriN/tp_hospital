@@ -40,7 +40,7 @@ if(isset($_POST['fecha'])){
 	$fechavalida=true;
 	$hoy=date("Y-m-d");
 	//verifico que la fecha sea válida
-	if($fecha<=$hoy) {
+	if($fecha<$hoy) {
 		$fechavalida=false;
 		$mensaje="No se puede sacar turno para una fecha anterior al dia de hoy";
 	}

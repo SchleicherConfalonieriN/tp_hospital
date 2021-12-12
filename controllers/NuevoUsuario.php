@@ -25,16 +25,21 @@ if(count($_POST)>0){
 	
 	$tipo=1;	
 	
-	if ($u->UsuarioExistente($dni)){
+	if ($u->usuarioExistente($dni)){
 		$mensaje="Ya existe un usuario con ese número de DNI";
 	}
 	else{  
-		$u->DarDeAlta($dni, $nombre, $apellido, $contra, $mail, $tipo);
-		session_start();
-		$_SESSION['idUsuario']=$dni;
-		$_SESSION['tipoUsuario']=1;
-		header('Location:./MenuPrincipalPaciente.php');
-		exit();
+		if ($u->mailInvalido($mail)){
+			$mensaje="Dirección de correo electrónico inválida";
+		}
+		else{
+			$u->darDeAlta($dni, $nombre, $apellido, $contra, $mail, $tipo);
+			session_start();
+			$_SESSION['idUsuario']=$dni;
+			$_SESSION['tipoUsuario']=1;
+			header('Location:./MenuPrincipalPaciente.php');
+			exit();
+		}
 	}
 }
 $v= new NuevoUsuario();

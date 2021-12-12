@@ -4,11 +4,10 @@ require './Sesion.php';
 require '../models/Especialidad.php';
 
 $e=new Especialidad();
-$nombre= $_POST['especialidad'];
 
-
-if(isset($nombre)){
-$e->darDeAlta($nombre);
+if(isset($_POST['especialidad'])){
+	$nombre= $_POST['especialidad'];
+	$e->darDeAlta($nombre);
 }
 header('Location:./AdministracionInstalaciones.php');
 

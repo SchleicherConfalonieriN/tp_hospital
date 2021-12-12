@@ -7,29 +7,21 @@ require '../models/Usuario.php';
 require '../models/Turno.php';
 require './Sesion.php';
 
-
-
-
-$contra= $_POST['contraseña'];
+if(!(isset($_SESSION['idUsuario']))){
+	header('Location:./VolverAlMenuPrincipal.php');
+	exit();
+}
 $dni = $_SESSION['idUsuario'];
 
 
 $u = new usuario();
 
+if (isset($_POST['contra'])){
+	$contra= $_POST['contra'];
+	if (strlen($contra)>5){
+		$u->cambiarContrasenia($dni,$contra);
+	}	
+}
 
-$u->cambiar_contraseña($dni,$contra);
-
-
- if($_SESSION['tipoUsuario']==0){
-header('Location:./menuPrincipalAdmin.php');
- }
-
- if($_SESSION['tipoUsuario']==1){
-header('Location:./menuPrincipalPaciente.php');
- }
-
-
-if($_SESSION['tipoUsuario']==2){
-header('Location:./menuPrincipalMedico.php');
- }
+header('Location:./VolverAlMenuPrincipal.php');
 ?>
