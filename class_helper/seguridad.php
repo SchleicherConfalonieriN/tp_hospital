@@ -28,10 +28,10 @@ class seguridad{
 	public static function tipo_validacion($tipo){
 		if ($tipo!=0 && $tipo!=1 && $tipo!=2){throw new ValidationException("Tipo de usuario invalido");}
 	}
-
+/*
 	public static function contra_validacion($contra){
 		if (!ctype_digit($contra)){throw new ValidationException("Contraseña Ivalida");	}
-	}
+	}*/
 	
 	public static function especialidad_validacion($especialidad){
 		if (strlen($especialidad)<4 OR strlen($especialidad)>35)throw new ValidationException("Nombre invalido", 1);
