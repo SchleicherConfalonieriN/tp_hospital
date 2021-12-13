@@ -63,13 +63,13 @@ class Usuario extends Model {
 	public function buscarPorNombreApellido($texto){
 		$texto=$this->db->escape($texto);
 		$texto=$this->db->escapeWildcards($texto);
-		$this->db->query("SELECT * from usuarios where nombre like '%" . $texto . "%' or apellido like '%" . $texto . "%'");
+		$this->db->query("SELECT nombre, apellido, dni from usuarios where nombre like '%" . $texto . "%' or apellido like '%" . $texto . "%'");
 		return $this->db->fetchAll();
 	}
 
 	public function cambiarContrasenia($dni,$contra){
 		seguridad::dni_validacion($dni);
-		//seguridad::contra_validacion($contra);
+		seguridad::contra_validacion($contra);
 		$hashcontra=seguridad::hash_contra($contra);	
 		$this->db->query("UPDATE usuarios SET contrasenia  = '$hashcontra' where dni = $dni");
 	}
