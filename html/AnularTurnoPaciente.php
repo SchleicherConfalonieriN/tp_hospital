@@ -16,9 +16,9 @@
 	<div>
 		<h1>¿Está seguro de que desea anular el turno?</h1>
 		<li>Profesional: <?= htmlentities($this->medico) ?></li>
-		<li>Dia: <?= date("d-m-Y",strtotime($this->turno['fecha'])) ?></li>
-		<li>Hora: <?= date("H:i",strtotime($this->turno['hora'])) ?></li></br>
-		<a href="./AnularTurno.php?id=<?= $this->turno['turno_id'] ?>"><button>Anular</button></a></br>
+		<li>Dia: <?= htmlentities(date("d-m-Y",strtotime($this->turno['fecha']))) ?></li>
+		<li>Hora: <?= htmlentities(date("H:i",strtotime($this->turno['hora']))) ?></li></br>
+		<a href="./AnularTurno.php?id=<?= htmlentities($this->turno['turno_id']) ?>"><button>Anular</button></a></br>
 		<a href="./menuPrincipalPaciente.php"><button>Cancelar</button></a>
 	</div>
 </body>

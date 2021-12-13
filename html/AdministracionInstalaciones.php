@@ -23,7 +23,7 @@
 					<tr><th>ID</th><th>Numero</th><th>Eliminar</th></tr>
 					<?php foreach ($this->consultorio as $con){ ?>
 					<tr><td><?= htmlentities($con['consultorio_id'])?></td> <td><?= htmlentities($con['numero'])?></td>
-					<td><a href="../controllers/EliminarConsultorio.php?id=<?= $con['consultorio_id'] ?>">Eliminar Consultorio</a></td></tr>
+					<td><a href="../controllers/EliminarConsultorio.php?id=<?= htmlentities($con['consultorio_id']) ?>">Eliminar Consultorio</a></td></tr>
 					<?php } ?>
 				</table>
 		</div>
@@ -45,7 +45,7 @@
 					<tr><th>ID</th><th>Nombre</th><th>Eliminar</th></tr>
 					<?php foreach ($this->especialidades as $esp){ ?>
 					<tr><td><?= htmlentities($esp['especialidad_id'])?></td> <td><?= htmlentities($esp['nom_especialidad'])?></td>  
-					<td> <a href="../controllers/EliminarEspecialidad.php?id=<?= $esp['especialidad_id'] ?>">Eliminar Especialidad</a></td></tr>
+					<td> <a href="../controllers/EliminarEspecialidad.php?id=<?= htmlentities($esp['especialidad_id']) ?>">Eliminar Especialidad</a></td></tr>
 					<?php } ?>
 			</table>
 			<a href="./MenuPrincipalAdministracion.php"><button>Volver al menú principal</button></a>

@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div>
-		<h2>Agendar turno para el dia <?= date("d-m-Y", strtotime($this->dia)) ?> a las <?= $this->hora ?> horas</h2>
+		<h2>Agendar turno para el dia <?= htmlentities(date("d-m-Y", strtotime($this->dia))) ?> a las <?= htmlentities($this->hora) ?> horas</h2>
 		<form id="formulario" method="post">
 			<label for="busq">Nombre/Apellido:</label><br/>
 			<input type="text" id="busq" name="busq" minlength="2" /><br/>
@@ -25,19 +25,19 @@
 
 		<table id="tabla">
 			<thead> 
-				<tr><?php if (count($this->pacientes)>0) echo '
-					<th>Nombre</th>
-					<th>Apellido</th>
-					<th>Dni</th>
-					<th></th>' ?>
+				<tr><?php if (count($this->pacientes)>0){ ?>
+					<th><?= htmlentities('Nombre')?></th>
+					<th><?= htmlentities('Apellido')?></th>
+					<th><?= htmlentities('Dni')?></th>
+					<th></th> <?php }?>
 				</tr>
 			</thead>
 			<tbody id="bodytabla">
 			</tbody>
 		</table>
 		
-		<?php if (count($this->pacientes)==0) echo  'No se obtuvieron resultados'?>
-		<h3><?=$this->mensaje ?></h3>
+		<?php if (count($this->pacientes)==0) echo  htmlentities('No se obtuvieron resultados')?>
+		<h3><?= htmlentities($this->mensaje) ?></h3>
 		<br/>
 		<a href="./VolverAlMenuPrincipal.php"><button>Volver</button></a>
 	</div>
@@ -56,7 +56,7 @@
 			else alert("Debe ingresar por lo menos dos caracteres");
 		}	
 		
-		var datos= <?php echo json_encode($this->pacientes) ?>;
+		var datos= <?php echo htmlentities(json_encode($this->pacientes)) ?>;
 		
 		datos.forEach(function(valor,indice){
 			objTr = document.createElement("tr");

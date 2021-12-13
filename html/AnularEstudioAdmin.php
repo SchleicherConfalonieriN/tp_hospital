@@ -18,8 +18,8 @@
 		<li>Estudio: <?= htmlentities($this->estudio['nom_estudio']) ?></li>
 		<li>Descripción: <?= htmlentities($this->estudio['desc_estudio']) ?></li>
 		<li>Paciente: <?= htmlentities($this->paciente) ?></li>
-		<li>Dia: <?= date("d-m-Y",strtotime($this->turno['fecha'])) ?></li>
-		<li>Hora: <?= date("H:i",strtotime($this->turno['hora'])) ?></li>
+		<li>Dia: <?= htmlentities(date("d-m-Y",strtotime($this->turno['fecha']))) ?></li>
+		<li>Hora: <?= htmlentities(date("H:i",strtotime($this->turno['hora']))) ?></li>
 		<a href="./AnularTurno.php?id=<?= $this->turno['turno_id'] ?>"><button>Anular</button></a>
 		<a href="./VolverAlMenuPrincipal.php"><button>Cancelar</button></a>
 	</div>

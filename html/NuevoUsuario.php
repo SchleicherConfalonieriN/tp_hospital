@@ -24,7 +24,7 @@
 			<input type="text" id="mail" name="mail" required="required"><br><br>
 			<input type="submit" value="Ingresar"></input>
 		</form> 
-		<?PHP echo($this->mensaje); ?>
+		<?PHP echo htmlentities(($this->mensaje)); ?>
 		<br/>
 		<a href="./IngresoAlSistema.php"><button>Volver</button></a>
 	</div>

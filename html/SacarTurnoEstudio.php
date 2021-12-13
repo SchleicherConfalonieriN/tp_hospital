@@ -18,7 +18,7 @@
 			<label for="hora">Hora:</label><br>
 			<select name="hora" id="hora">
 				<?php foreach($this->opciones as $o){ ?>
-				<option value="<?=$o ?>"><?=$o ?></option><?php } ?>
+				<option value="<?=htmlentities($o) ?>"><?=htmlentities($o) ?></option><?php } ?>
 			</select> 
 			<h4><?=$this->mensaje ?></h4>
 		</form> <br/>
@@ -29,7 +29,7 @@
 	<a href="./VolverAlMenuPrincipal.php"><button>Volver</button></a>
 	</div>
 	<script type="text/javascript">
-		document.getElementById("fecha").value="<?=$this->dia ?>";
+		document.getElementById("fecha").value="<?=htmlentities($this->dia) ?>";
 		
 		document.getElementById("fecha").onchange=function(){
 			document.getElementById("hora").value=null;
@@ -37,7 +37,7 @@
 		}
 		
 		document.getElementById("btnReservar").onclick=function(){
-			document.getElementById("fecha").value="<?=$this->dia ?>";
+			document.getElementById("fecha").value="<?=htmlentities($this->dia) ?>";
 			document.getElementById("formulario").submit();
 		}		
 	</script>

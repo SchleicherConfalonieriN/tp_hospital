@@ -7,7 +7,8 @@
 </head>
 <body>
 
-	<h1>Profesional: <?= htmlentities($this->usuario['nombre'])?> <?= htmlentities($this->usuario['apellido'])?></h1>
+	<h1>Profesional: <?= htmlentities($this->usuario['nombre'])?> 
+	<?= htmlentities($this->usuario['apellido'])?></h1>
 	<h1>dia <?= htmlentities(date("d-m-Y", strtotime($this->fecha)))?></h1>
 
 	<div>
@@ -46,8 +47,8 @@
 	</div>	
 	
 	<script type="text/javascript">
-		document.getElementById("fecha").value="<?=$this->fecha ?>";
-		document.getElementById("id").value="<?=$this->usuario['dni'] ?>";
+		document.getElementById("fecha").value="<?=htmlentities($this->fecha) ?>";
+		document.getElementById("id").value="<?=htmlentities($this->usuario['dni']) ?>";
 			
 		document.getElementById("fecha").onchange=function(){
 			document.getElementById("formulario").submit();

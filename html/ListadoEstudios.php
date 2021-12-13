@@ -18,7 +18,10 @@
 		<tr><th>Nombre</th><th>Descripción</th><th>Precio</th><th></th></tr>
 
 		<?php foreach($this->estudios as $e) { ?>
-		<tr><td><?= htmlentities($e['nom_estudio']) ?></td> <td><?= htmlentities($e['desc_estudio']) ?></td><td><?= $e['precio'] ?></td><td><a href="SacarTurnoEstudio.php?id=<?= $e['estudio_id'] ?>">Sacar Turno</a></td></tr>
+		<tr>
+		<td><?= htmlentities($e['nom_estudio']) ?></td> 
+		<td><?= htmlentities($e['desc_estudio']) ?></td>
+		<td><?= htmlentities($e['precio']) ?></td><td><a href="SacarTurnoEstudio.php?id=<?= htmlentities($e['estudio_id']) ?>">Sacar Turno</a></td></tr>
 		<?php } ?>
 
 	</table>

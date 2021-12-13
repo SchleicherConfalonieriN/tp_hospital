@@ -15,7 +15,7 @@
 				<label class="lab" for="contra">Contraseña</label><br>
 				<input class="datosin" type="password" id="contra" name="contra" required="required"><br><br>
 				<br/>
-				<h3><?= $this->mensaje ?></h3>
+				<h3><?= htmlentities($this->mensaje) ?></h3>
 				</div>		
 				<div id="Ingresar">
 					<input type="submit" value="Ingresar">

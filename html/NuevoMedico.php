@@ -32,7 +32,7 @@
 			<label for="consultorio">Consultorio:</label><br>
 			<select name="consultorio" id="consultorio" required="required">
 				<?php foreach($this->consultorios as $c){ ?>
-				<option value="<?=$c ?>"><?=$c ?></option><?php } ?>
+				<option value="<?=htmlentities($c) ?>"><?= htmlentities($c) ?></option><?php } ?>
 			</select><br>
 			<label for="horario">Horario:</label><br>
 			<select name="horario" id="horario" required="required">
@@ -41,7 +41,7 @@
 			</select> </br></br>
 		  <input type="submit" value="Aceptar"></input>
 		</form> 
-		<h3><?= $this->mensaje ?></h3>
+		<h3><?= htmlentities($this->mensaje) ?></h3>
 		<br/>
 		<a href="./MenuPrincipalAdministracion.php"><button>Volver</button></a>
 	</div>

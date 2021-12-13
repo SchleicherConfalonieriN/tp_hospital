@@ -17,9 +17,9 @@
 			<label for="fecha">Hora:</label><br>
 			<select name="hora" id="hora">
 				<?php foreach($this->opciones as $o){ ?>
-				<option value="<?=$o ?>"><?=$o ?></option><?php } ?>
+				<option value="<?= htmlentities($o) ?>"><?= htmlentities($o) ?></option><?php } ?>
 			</select> 
-			<h4><?=$this->mensaje ?></h4>
+			<h4><?= htmlentities($this->mensaje) ?></h4>
 		</form> 
 		<button id="btnReservar">Reservar Turno</button>
 		<br/>
@@ -28,7 +28,7 @@
 	<a href="./ListadoMedicos.php"><button>Volver</button></a>
 	</div>
 	<script type="text/javascript">
-		document.getElementById("fecha").value="<?=$this->dia ?>";
+		document.getElementById("fecha").value="<?=htmlentities($this->dia) ?>";
 		
 		document.getElementById("fecha").onchange=function(){
 			document.getElementById("hora").value=null;
@@ -36,7 +36,7 @@
 		}
 		
 		document.getElementById("btnReservar").onclick=function(){
-			document.getElementById("fecha").value="<?=$this->dia ?>";
+			document.getElementById("fecha").value="<?= htmlentities($this->dia) ?>";
 			document.getElementById("formulario").submit();
 		}		
 	</script>

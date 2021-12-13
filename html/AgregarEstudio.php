@@ -34,7 +34,11 @@
 	<table>
 		<tr><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Horario</th></tr>
 		<?php foreach($this->estudios as $e) { ?>
-		<tr><td><?= htmlentities($e['nom_estudio'])?></td> <td><?= htmlentities($e['desc_estudio'])?></td><td><?= $e['precio'] ?></td><td><?php if($e['horario']=='t') echo("Tarde"); else echo('Mañana'); ?></td></tr>
+		<tr>
+		<td><?= htmlentities($e['nom_estudio'])?></td> 
+		<td><?= htmlentities($e['desc_estudio'])?></td>
+		<td><?= htmlentities($e['precio']) ?></td>
+		<td><?php if($e['horario']=='t') echo htmlentities(("Tarde")); else echo htmlentities(('Mañana')); ?></td></tr>
 		<?php } ?>
 	</table>
 

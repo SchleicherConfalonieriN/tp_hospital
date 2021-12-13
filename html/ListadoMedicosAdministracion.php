@@ -22,13 +22,13 @@
 				<td><?= htmlentities($m['nom_medico'])?> <?= htmlentities($m['ape_medico']) ?></td> 
 				<td><?= htmlentities($m['nom_especialidad']) ?></td> 
 				<td><?php if($m['horario']=='t') 
-				{echo "Tarde";} 
-				else {echo "Mañana";} ?>
+				{echo htmlentities("Tarde");} 
+				else {echo htmlentities("Mañana");} ?>
 				</td> 
-				<td><?= $m['consultorio']?></td>	
-				<td><a href="ConsultarAgendaMedico.php?id=<?=$m['dni'] ?>">Consultar Agenda</a></td>	
-				<td><a href="CambiarConsultorio.php?id=<?=$m['dni'] ?>">Cambiar consultorio</a></td>
-				<td><a href="eliminar.php?dni=<?=$m['dni']?>">Eliminar Medico</a></td>
+				<td><?= htmlentities($m['consultorio'])?></td>	
+				<td><a href="ConsultarAgendaMedico.php?id=<?=htmlentities($m['dni']) ?>">Consultar Agenda</a></td>	
+				<td><a href="CambiarConsultorio.php?id=<?=htmlentities($m['dni']) ?>">Cambiar consultorio</a></td>
+				<td><a href="eliminar.php?dni=<?=htmlentities($m['dni'])?>">Eliminar Medico</a></td>
 			</tr>
 		<?php } ?>
 	</table>

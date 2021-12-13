@@ -19,13 +19,16 @@
 		<tr><th>Nombre</th><th>Especialidad</th><th>Horario</th><th></th></tr>
 
 		<?php foreach($this->medicos as $m) { ?>
-		<tr><td>
-			<?= htmlentities($m['nom_medico']) ?> <?= htmlentities($m['ape_medico']) ?></td><td><?= htmlentities($m['nom_especialidad']) ?></td> 
+		<tr>
+			<td>
+			<?= htmlentities($m['nom_medico']) ?> <?= htmlentities($m['ape_medico']) ?></td>
+			<td><?= htmlentities($m['nom_especialidad']) ?></td> 
+			
 		<td><?php 
 			if($m['horario']=='t')
-			{ echo "Tarde";} 
-			else {echo 'Mañana';} ?></td>
-		<td><a href="SacarTurnoConMedico.php?id=<?= $m['dni'] ?>">Sacar Turno</a></td></tr>
+			{ echo htmlentities("Tarde");} 
+			else {echo htmlentities('Mañana');} ?></td>
+		<td><a href="SacarTurnoConMedico.php?id=<?= htmlentities($m['dni']) ?>">Sacar Turno</a></td></tr>
 		<?php } ?>
 
 	</table>

@@ -16,7 +16,7 @@
 			<label for="consultorio">Consultorio:</label><br>
 			<select name="consultorio" id="consultorio" required="required">
 				<?php foreach($this->consultorios as $c){ ?>
-				<option value="<?=$c ?>"><?=$c ?></option><?php } ?>
+				<option value="<?=htmlentities($c) ?>"><?=htmlentities($c) ?></option><?php } ?>
 			</select><br>
 			<input type="submit" value="Aceptar"></input>
 		</form> 
