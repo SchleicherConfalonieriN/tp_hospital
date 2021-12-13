@@ -12,10 +12,6 @@ if(!isset($_GET['id'])){
 	header('Location:./IngresoAlSistema.php'); //si no tiene el valor de id que vuelva
 	exit();
 }
-if(!ctype_digit($_GET['id'])){
-	header('Location:./IngresoAlSistema.php'); // si el id no es un numero que vuelva
-	exit();
-}
 
 $m=new Medico();
 if(!($m->existeMedico($_GET['id']))){

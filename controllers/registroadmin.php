@@ -1,8 +1,42 @@
-<<?php 
+POST<<?php 
 require '../fw/fw.php';
 require './Sesion.php';
 require '../models/Medico.php';
 require '../class_helper/seguridad.php';
+
+
+
+
+if(!isset($_POST['agregar_dni'])){
+    header('Location:./IngresoAlSistema.php'); 
+    exit();
+}
+
+if(!isset($_POST['agregar_nombre'])){
+    header('Location:./IngresoAlSistema.php'); 
+    exit();
+}
+
+if(!isset($_POST['agregar_apellido'])){
+    header('Location:./IngresoAlSistema.php'); 
+    exit();
+}
+
+if(!isset($_POST['agregar_contra'])){
+    header('Location:./IngresoAlSistema.php'); 
+    exit();
+}
+
+if(!isset($_POST['agregar_mail'])){
+    header('Location:./IngresoAlSistema.php'); 
+    exit();
+}
+
+
+if(!isset($_POST['tipo'])){
+    header('Location:./IngresoAlSistema.php'); 
+    exit();
+}
 
 
 	$dni=($_POST['agregar_dni']);
@@ -14,10 +48,13 @@ require '../class_helper/seguridad.php';
 	$tipo=$_POST['tipo'];
 
 
-$s=new seguridad();
-
 
 		if ($tipo==2){
+			if(!isset($_POST['agregar_especialidad'])){
+    			header('Location:./IngresoAlSistema.php'); 
+   			 	exit(); 	
+			}
+
 
 			$m = new medico();
 			$m->registroMedico ($dni, $nombre, $apellido, $contra, $mail, $especialidad,$tipo,$s);

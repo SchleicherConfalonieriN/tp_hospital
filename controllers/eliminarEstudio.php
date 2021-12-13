@@ -6,6 +6,13 @@ require '../class_helper/seguridad.php';
 
 // REVISION ELIMINAR ESTUDIO UTLIZAR
 
+
+if(!isset($_POST['nombre'])){
+	header('Location:./IngresoAlSistema.php'); 
+	exit();
+}
+
+
 $nombre=($_POST['nombre']);
 
 

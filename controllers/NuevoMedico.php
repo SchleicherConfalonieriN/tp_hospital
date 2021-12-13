@@ -41,8 +41,7 @@ if(isset($_POST['dni'])){
 	
 	if (!isset($_POST['horario'])) die('Error al validar el horario');
 	$horario=$_POST['horario'];
-	if (($horario!='m') and ($horario!='t')) die('Error al validar el horario');
-
+	
 	
 	if (!isset($_POST['consultorio'])) die('Error al validar el consultorio');
 	$consultorio=$_POST['consultorio'];

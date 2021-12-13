@@ -13,10 +13,8 @@ if(!isset($_GET['id'])) {
 	header('Location:./IngresoAlSistema.php');
 	exit();
 }
-if(!ctype_digit($_GET['id'])) {
-	header('Location:./IngresoAlSistema.php');
-	exit();
-}
+
+
 $id_turno=($_GET['id']);
 $t=new Turno();
 if(!($t->existeTurno($id_turno))) {
